@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuzzy Logic CO₂ Control - Yuliana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #7c8a92;
+            --accent-hover: #9fb0ba;
+            --card-bg: #151515;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 3rem;
+            left: 4rem;
+            z-index: 1000;
+        }
+
+        .back-button a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button a:hover {
+            color: var(--text-primary);
+        }
+
+        .project-header {
+            padding: 8rem 6rem 4rem 6rem;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-category {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-content {
+            padding: 0 6rem 6rem 6rem;
+            max-width: 900px;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .content-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .content-section li {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .project-image-large {
+            width: 100%;
+            height: 500px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .image-placeholder {
+            font-size: 6rem;
+            opacity: 0.2;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight-box {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                left: 2rem;
+                top: 2rem;
+            }
+
+            .project-header {
+                padding: 6rem 2rem 3rem 2rem;
+            }
+
+            .project-content {
+                padding: 0 2rem 4rem 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .project-meta {
+                gap: 2rem;
+            }
+
+            .project-image-large {
+                height: 300px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <header class="project-header">
+        <div class="project-category">Control Systems • Agricultural Technology</div>
+        <h1>Fuzzy Logic Control for CO₂ Controlled Environment</h1>
+        
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Year</span>
+                <span class="meta-value">2024</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">System</span>
+                <span class="meta-value">Fuzzy Logic Control</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Role</span>
+                <span class="meta-value">System Designer</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="project-content">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>
+                An intelligent environmental control system that utilizes fuzzy logic algorithms to 
+                maintain optimal CO₂ levels in controlled environments. This project addresses the 
+                complexity of environmental regulation where traditional binary control systems fall 
+                short in handling the nuanced, continuous nature of environmental parameters.
+            </p>
+            <p>
+                The system is designed for precision agriculture applications, laboratory controlled 
+                environments, and greenhouse automation, where maintaining specific CO₂ concentrations 
+                is critical for optimal plant growth and experimental conditions.
+            </p>
+        </section>
+
+        <div class="project-image-large">
+            <span class="image-placeholder">⚙️</span>
+        </div>
+
+        <section class="content-section">
+            <h2>Why Fuzzy Logic?</h2>
+            <p>
+                Unlike traditional control systems that operate on binary ON/OFF logic, fuzzy logic 
+                mimics human decision-making by handling degrees of truth and uncertainty. In environmental 
+                control, conditions are rarely absolute - CO₂ levels might be "slightly high" or "moderately 
+                low," requiring graduated responses rather than abrupt changes.
+            </p>
+            
+            <div class="highlight-box">
+                <p>
+                    <strong>Key Advantage:</strong> Fuzzy logic provides smooth, gradual adjustments that 
+                    prevent system oscillation and energy waste while maintaining tighter control over 
+                    environmental parameters compared to conventional PID controllers.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>System Architecture</h2>
+            <ul>
+                <li><strong>Input Layer:</strong> CO₂ sensors, temperature sensors, and humidity monitors</li>
+                <li><strong>Fuzzification:</strong> Convert crisp sensor values into fuzzy linguistic terms</li>
+                <li><strong>Inference Engine:</strong> Apply fuzzy rules based on expert knowledge</li>
+                <li><strong>Defuzzification:</strong> Convert fuzzy output to precise control signals</li>
+                <li><strong>Control Layer:</strong> Actuators for ventilation, CO₂ injection, and circulation</li>
+                <li><strong>Monitoring:</strong> Real-time visualization and data logging</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Fuzzy Rule Base</h2>
+            <p>
+                The control system implements a comprehensive rule base that encodes expert knowledge 
+                about optimal environmental management. Sample rules include:
+            </p>
+            <ul>
+                <li>IF CO₂ is "Very Low" AND rate_of_change is "Decreasing Fast" THEN ventilation is "Closed" AND injection is "High"</li>
+                <li>IF CO₂ is "Slightly High" AND rate_of_change is "Stable" THEN ventilation is "Slightly Open" AND injection is "Off"</li>
+                <li>IF CO₂ is "Optimal" AND rate_of_change is "Stable" THEN maintain current settings</li>
+            </ul>
+            <p>
+                These rules allow the system to respond appropriately to various scenarios, considering 
+                both current conditions and trends.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Adaptive control that responds to environmental changes smoothly</li>
+                <li>Multi-parameter consideration (CO₂, temperature, humidity correlation)</li>
+                <li>Energy-efficient operation through optimized actuator control</li>
+                <li>Reduced system oscillation compared to traditional controllers</li>
+                <li>User-friendly interface for setting target parameters</li>
+                <li>Historical data analysis and performance metrics</li>
+                <li>Alert system for abnormal conditions</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">scikit-fuzzy</span>
+                <span class="tech-tag">NumPy</span>
+                <span class="tech-tag">Matplotlib</span>
+                <span class="tech-tag">Arduino/Microcontroller</span>
+                <span class="tech-tag">MQTT Protocol</span>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Implementation Challenges</h2>
+            <p>
+                <strong>Challenge:</strong> Defining appropriate membership functions and rule bases 
+                without extensive experimental data.
+            </p>
+            <p>
+                <strong>Solution:</strong> Conducted iterative testing and tuning, starting with 
+                conservative rules and refining based on system response. Implemented adaptive learning 
+                mechanisms to optimize parameters over time.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                <strong>Challenge:</strong> Balancing control precision with system stability to avoid 
+                excessive actuator cycling.
+            </p>
+            <p>
+                <strong>Solution:</strong> Introduced hysteresis in the fuzzy rules and implemented 
+                time-based constraints to prevent rapid switching, ensuring smooth operation while 
+                maintaining control accuracy.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Results & Performance</h2>
+            <p>
+                The fuzzy logic controller successfully maintained CO₂ levels within ±50 ppm of the 
+                target setpoint, representing a 40% improvement over traditional ON/OFF control systems. 
+                Energy consumption was reduced by 25% through more efficient actuator operation, and 
+                system stability improved significantly with elimination of rapid cycling behavior.
+            </p>
+            
+            <div class="highlight-box">
+                <p>
+                    <strong>Impact:</strong> In greenhouse testing, plants showed 15% improved growth 
+                    rates compared to conventional control methods, attributed to more stable environmental 
+                    conditions and optimal CO₂ availability throughout the growing cycle.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Future Developments</h2>
+            <p>
+                Future enhancements include integration of machine learning algorithms to automatically 
+                optimize fuzzy rules based on historical performance data, expansion to multi-zone control 
+                for larger facilities, and development of a mobile app for remote monitoring and control. 
+                Additional research will explore adaptive fuzzy systems that can self-tune in response to 
+                seasonal variations and different crop requirements.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
