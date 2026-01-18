@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuliana - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #7c8a92;
+            --accent-hover: #9fb0ba;
+            --card-bg: #151515;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 3rem 4rem;
+            z-index: 1000;
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 4rem 0 6rem;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .bio {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 3rem;
+            font-size: 0.95rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .status-text {
+            color: var(--text-primary);
+        }
+
+        .status-text a {
+            color: var(--text-primary);
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.3s ease;
+        }
+
+        .status-text a:hover {
+            text-decoration-color: var(--accent-hover);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 8rem 4rem 4rem 6rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 300;
+        }
+
+        /* Project Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 0;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(124, 138, 146, 0.1) 0%, rgba(159, 176, 186, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            opacity: 1;
+        }
+
+        .project-placeholder {
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .project-year {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 4rem 3rem 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 8rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .copyright {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 2rem 2rem;
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 0 2rem;
+                min-height: 90vh;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .bio {
+                font-size: 1rem;
+            }
+
+            .projects-section {
+                padding: 4rem 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            footer {
+                padding: 4rem 2rem 2rem 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#projects">Projects</a>
+        <a href="#activity">Activity</a>
+        <a href="#hall-of-shame">Hall of Shame</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Yuliana</h1>
+        
+        <p class="bio">
+            Mechanical and Biosystem Engineer student, currently focused in Bioinformatics at IPB University. 
+            I'm exploring Internet of Things (IoT) and figuring out how biological data should actually be presented.
+        </p>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            <span class="status-text">Mechanical and Biosystem Engineering Student @ <a href="https://ipb.ac.id" target="_blank">IPB University</a></span>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="section-header">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">Some side quests that I have been doing so far.</p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <a href="project1.html" style="text-decoration: none; color: inherit;">
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">🌊</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">IoT Based Water Level Monitoring System</h3>
+                        <p class="project-year">ESP32 & Blynk • 2024</p>
+                        <p class="project-description">
+                            A real-time water level monitoring system using ESP32 microcontroller and Blynk platform. 
+                            This project features automated alerts, data visualization, and remote monitoring capabilities 
+                            for flood prevention and water management.
+                        </p>
+                    </div>
+                </article>
+            </a>
+
+            <!-- Project 2 -->
+            <a href="project2.html" style="text-decoration: none; color: inherit;">
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">🖼️</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Image Processing</h3>
+                        <p class="project-year">Python & OpenCV • 2025</p>
+                        <p class="project-description">
+                            Advanced image processing techniques applied to biological samples. Implements various 
+                            algorithms for image enhancement, segmentation, and feature extraction to analyze 
+                            microscopic images and identify key biological patterns.
+                        </p>
+                    </div>
+                </article>
+            </a>
+
+            <!-- Project 3 -->
+            <a href="project3.html" style="text-decoration: none; color: inherit;">
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">🌡️</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Fuzzy Logic Control for CO₂ Controlled Environment</h3>
+                        <p class="project-year">Fuzzy Logic System • 2024</p>
+                        <p class="project-description">
+                            An intelligent environmental control system using fuzzy logic algorithms to maintain 
+                            optimal CO₂ levels in controlled environments. Features adaptive decision-making 
+                            and precise automation for agricultural and laboratory applications.
+                        </p>
+                    </div>
+                </article>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="footer-links">
+                    <a href="mailto:your.email@example.com">Email</a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Tools & Skills</h3>
+                <div class="footer-links">
+                    <span style="color: var(--text-secondary);">Python</span>
+                    <span style="color: var(--text-secondary);">Cursor</span>
+                    <span style="color: var(--text-secondary);">Canva</span>
+                    <span style="color: var(--text-secondary);">SolidWorks</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2025 Yuliana. Designed and built with care.</p>
+        </div>
+    </footer>
+</body>
+</html>
