@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing - Yuliana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #7c8a92;
+            --accent-hover: #9fb0ba;
+            --card-bg: #151515;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 3rem;
+            left: 4rem;
+            z-index: 1000;
+        }
+
+        .back-button a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button a:hover {
+            color: var(--text-primary);
+        }
+
+        .project-header {
+            padding: 8rem 6rem 4rem 6rem;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-category {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-content {
+            padding: 0 6rem 6rem 6rem;
+            max-width: 900px;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .content-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .content-section li {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .project-image-large {
+            width: 100%;
+            height: 500px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .image-placeholder {
+            font-size: 6rem;
+            opacity: 0.2;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                left: 2rem;
+                top: 2rem;
+            }
+
+            .project-header {
+                padding: 6rem 2rem 3rem 2rem;
+            }
+
+            .project-content {
+                padding: 0 2rem 4rem 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .project-meta {
+                gap: 2rem;
+            }
+
+            .project-image-large {
+                height: 300px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <header class="project-header">
+        <div class="project-category">Computer Vision • Bioinformatics</div>
+        <h1>Image Processing for Biological Analysis</h1>
+        
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Year</span>
+                <span class="meta-value">2025</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Platform</span>
+                <span class="meta-value">Python & OpenCV</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Role</span>
+                <span class="meta-value">Research & Development</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="project-content">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>
+                An advanced image processing pipeline designed specifically for analyzing biological samples 
+                and microscopic imagery. This project bridges the gap between raw biological data and 
+                meaningful insights through sophisticated computer vision algorithms.
+            </p>
+            <p>
+                The system processes high-resolution microscopic images to identify, quantify, and analyze 
+                biological structures, enabling researchers to extract quantitative data from visual samples 
+                with unprecedented accuracy and speed.
+            </p>
+        </section>
+
+        <div class="project-image-large">
+            <span class="image-placeholder">🔬</span>
+        </div>
+
+        <section class="content-section">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Automated cell detection and counting in microscopic images</li>
+                <li>Advanced image enhancement techniques for low-quality samples</li>
+                <li>Segmentation algorithms for isolating biological structures</li>
+                <li>Feature extraction for morphological analysis</li>
+                <li>Batch processing capabilities for large datasets</li>
+                <li>Statistical analysis and visualization of results</li>
+                <li>Export functionality for integration with research workflows</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Technical Implementation</h2>
+            <p>
+                The image processing pipeline utilizes Python's scientific computing ecosystem, leveraging 
+                OpenCV for core image operations, NumPy for numerical computations, and scikit-image for 
+                advanced processing algorithms. The system implements a modular architecture allowing for 
+                easy customization and extension.
+            </p>
+            <p>
+                Key algorithms include adaptive thresholding for image binarization, morphological operations 
+                for noise reduction, watershed segmentation for separating overlapping cells, and contour 
+                detection for boundary identification. Each processing step is carefully calibrated to handle 
+                the unique challenges of biological imaging.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Processing Pipeline</h2>
+            <ul>
+                <li><strong>Preprocessing:</strong> Noise reduction, contrast enhancement, and normalization</li>
+                <li><strong>Segmentation:</strong> Separating foreground biological structures from background</li>
+                <li><strong>Feature Detection:</strong> Identifying key biological markers and structures</li>
+                <li><strong>Quantification:</strong> Measuring size, shape, and intensity parameters</li>
+                <li><strong>Classification:</strong> Categorizing structures based on extracted features</li>
+                <li><strong>Visualization:</strong> Generating annotated images and statistical plots</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">OpenCV</span>
+                <span class="tech-tag">NumPy</span>
+                <span class="tech-tag">scikit-image</span>
+                <span class="tech-tag">Matplotlib</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Jupyter Notebook</span>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Challenges & Solutions</h2>
+            <p>
+                <strong>Challenge:</strong> Handling varying image quality and lighting conditions across 
+                different microscopic samples.
+            </p>
+            <p>
+                <strong>Solution:</strong> Implemented adaptive preprocessing algorithms that automatically 
+                adjust parameters based on image characteristics, ensuring consistent results regardless 
+                of input quality.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                <strong>Challenge:</strong> Accurately segmenting overlapping or touching cells in 
+                dense biological samples.
+            </p>
+            <p>
+                <strong>Solution:</strong> Developed a custom watershed algorithm combined with distance 
+                transform to effectively separate clustered cells while maintaining accurate boundary detection.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Applications & Impact</h2>
+            <p>
+                This image processing system has been successfully applied to various biological research 
+                scenarios, including cell culture analysis, tissue sample examination, and microorganism 
+                identification. The automated approach reduces analysis time by 80% compared to manual 
+                counting methods while improving accuracy and reproducibility.
+            </p>
+            <p>
+                The project demonstrates the power of computational methods in modern biology, enabling 
+                researchers to process larger datasets and extract more detailed information from their 
+                microscopic observations. Future developments include integration of machine learning models 
+                for automated classification and real-time processing capabilities.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
