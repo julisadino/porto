@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuliana - Portfolio</title>
+    <title>Yuliana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -180,49 +180,46 @@
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
+            gap: 4rem 3rem;
             margin-top: 4rem;
         }
 
         .project-card {
-            background: var(--card-bg);
+            background: transparent;
             border-radius: 0;
-            overflow: hidden;
+            overflow: visible;
             cursor: pointer;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+            border: none;
         }
 
         .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
         }
 
         .project-image {
             width: 100%;
+            max-width: 450px;
             height: 280px;
+            border-radius: 16px;
             background: var(--bg-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
         }
 
-        .project-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(124, 138, 146, 0.1) 0%, rgba(159, 176, 186, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .project-card:hover .project-image {
+            transform: scale(1.05);
         }
 
-        .project-card:hover .project-image::before {
-            opacity: 1;
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .project-placeholder {
@@ -232,7 +229,7 @@
         }
 
         .project-content {
-            padding: 2rem;
+            padding: 0;
         }
 
         .project-title {
@@ -330,7 +327,12 @@
 
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 3rem;
+            }
+
+            .project-image {
+                max-width: 100%;
+                height: 220px;
             }
 
             footer {
@@ -390,14 +392,15 @@
                 <article class="project-card">
                     <div class="project-image">
                         <div class="project-placeholder">🌊</div>
+                        <!-- Untuk mengganti dengan foto asli, gunakan:
+                        <img src="images/project1.jpg" alt="IoT Water Level Monitoring">
+                        -->
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">IoT Based Water Level Monitoring System</h3>
                         <p class="project-year">ESP32 & Blynk • 2024</p>
                         <p class="project-description">
                             A real-time water level monitoring system using ESP32 microcontroller and Blynk platform. 
-                            This project features automated alerts, data visualization, and remote monitoring capabilities 
-                            for flood prevention and water management.
                         </p>
                     </div>
                 </article>
@@ -408,14 +411,15 @@
                 <article class="project-card">
                     <div class="project-image">
                         <div class="project-placeholder">🖼️</div>
+                        <!-- Untuk mengganti dengan foto asli, gunakan:
+                        <img src="images/project2.jpg" alt="Image Processing">
+                        -->
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Image Processing</h3>
                         <p class="project-year">Python & OpenCV • 2025</p>
                         <p class="project-description">
-                            Advanced image processing techniques applied to biological samples. Implements various 
-                            algorithms for image enhancement, segmentation, and feature extraction to analyze 
-                            microscopic images and identify key biological patterns.
+                            Image processing techniques using RGB applied to biological samples. 
                         </p>
                     </div>
                 </article>
@@ -426,14 +430,16 @@
                 <article class="project-card">
                     <div class="project-image">
                         <div class="project-placeholder">🌡️</div>
+                        <!-- Untuk mengganti dengan foto asli, gunakan:
+                        <img src="images/project3.jpg" alt="Fuzzy Logic Control">
+                        -->
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Fuzzy Logic Control for CO₂ Controlled Environment</h3>
-                        <p class="project-year">Fuzzy Logic System • 2024</p>
+                        <p class="project-year">Fuzzy Logic System • Current</p>
                         <p class="project-description">
-                            An intelligent environmental control system using fuzzy logic algorithms to maintain 
-                            optimal CO₂ levels in controlled environments. Features adaptive decision-making 
-                            and precise automation for agricultural and laboratory applications.
+                            An environmental control system using fuzzy logic algorithms to maintain 
+                            optimal CO₂ levels in controlled environments. 
                         </p>
                     </div>
                 </article>
@@ -447,9 +453,8 @@
             <div class="footer-section">
                 <h3>Connect</h3>
                 <div class="footer-links">
-                    <a href="mailto:your.email@example.com">Email</a>
+                    <a href="mailto:yulianasikoembang@gmail.com">Email</a>
                     <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
                 </div>
             </div>
 
@@ -465,7 +470,7 @@
         </div>
 
         <div class="copyright">
-            <p>© 2025 Yuliana. Designed and built with care.</p>
+            <p>© 2026 Yuliana. Designed inspired by latishab.</p>
         </div>
     </footer>
 </body>
