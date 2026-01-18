@@ -6,7 +6,7 @@
     <title>IoT Water Level Monitoring - Yuliana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,7 +25,7 @@
         }
 
         body {
-            font-family: 'Work Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
@@ -72,6 +72,7 @@
         }
 
         .project-category {
+            font-family: 'Inter', sans-serif;
             color: var(--accent);
             font-size: 0.9rem;
             font-weight: 500;
@@ -103,6 +104,7 @@
         }
 
         .meta-label {
+            font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             color: var(--text-secondary);
             text-transform: uppercase;
@@ -110,6 +112,7 @@
         }
 
         .meta-value {
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
             color: var(--text-primary);
         }
@@ -128,12 +131,13 @@
         .content-section h2 {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
-            font-weight: 600;
+            font-weight: 400;
             margin-bottom: 1.5rem;
             color: var(--text-primary);
         }
 
         .content-section p {
+            font-family: 'Inter', sans-serif;
             color: var(--text-secondary);
             font-size: 1.05rem;
             line-height: 1.8;
@@ -146,6 +150,7 @@
         }
 
         .content-section li {
+            font-family: 'Inter', sans-serif;
             color: var(--text-secondary);
             font-size: 1.05rem;
             line-height: 1.8;
@@ -161,16 +166,24 @@
             color: var(--accent);
         }
 
-        /* Image Placeholder */
+        /* Image Container */
         .project-image-large {
             width: 100%;
             height: 500px;
             background: var(--bg-secondary);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .project-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .image-placeholder {
@@ -187,6 +200,7 @@
         }
 
         .tech-tag {
+            font-family: 'Inter', sans-serif;
             padding: 0.5rem 1.2rem;
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -253,10 +267,6 @@
                 <span class="meta-label">Platform</span>
                 <span class="meta-value">ESP32 & Blynk</span>
             </div>
-            <div class="meta-item">
-                <span class="meta-label">Role</span>
-                <span class="meta-value">Developer & Designer</span>
-            </div>
         </div>
     </header>
 
@@ -264,7 +274,7 @@
     <main class="project-content">
         <!-- Overview -->
         <section class="content-section">
-            <h2>Bits about</h2>
+            <h2>How I Made it (with team)</h2>
             <p>
                 In my 4th semester, I took a course called Instrumentation and Control from my department.
                 This course led us to learn more deeply than before about electrical and electronics. My final
@@ -280,9 +290,10 @@
             </p>
         </section>
 
-        <!-- Image Placeholder -->
+        <!-- Project Image -->
         <div class="project-image-large">
-            <span class="image-placeholder">📊</span>
+            <img src="images/project11.jpg" alt="IoT Water Level Monitoring System">
+            <!-- Kalau gambar tidak ada, akan muncul background abu-abu -->
         </div>
 
         <!-- Technologies Used -->
@@ -297,6 +308,9 @@
                 <span class="tech-tag">Iduino S045 Sensor</span>
             </div>
         </section>
+
+        <!-- Results -->
+        <section class="content-section">
             <p>
                 The system successfully demonstrated accurate water level monitoring with ±2cm precision. 
                 During testing phase, it provided early warnings for potential flooding events, allowing 
