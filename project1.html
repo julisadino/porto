@@ -264,16 +264,19 @@
     <main class="project-content">
         <!-- Overview -->
         <section class="content-section">
-            <h2>Overview</h2>
+            <h2>Bits about</h2>
             <p>
-                Developed a comprehensive IoT-based water level monitoring system designed to provide 
-                real-time data collection and analysis for flood prevention and water management. The 
-                system integrates ESP32 microcontroller with ultrasonic sensors and cloud connectivity 
-                through the Blynk platform.
+                In my 4th semester, I took a course called Instrumentation and Control from my department.
+                This course led us to learn more deeply than before about electrical and electronics. My final
+                project with my team was an IoT-based water level monitoring system integrated in real time 
+                with Blynk. We developed a small scale prototype dam model and used an ESP32 as a microcontroller
+                integrated with a water level sensor to collect real time data from the reservoir.
             </p>
             <p>
-                This project addresses critical challenges in water management by enabling remote monitoring, 
-                automated alerts, and data-driven decision making for municipalities and environmental agencies.
+                System was designed to automatically control the dam gate using a servo motor. When the  
+                water level reached a predetermined threshold, the ESP32 would trigger the servo to open the 
+                prototype dam gate, allowing water to flow out and preventing overflow. The water level data
+                was continuously monitored and displayed on the Blynk app.
             </p>
         </section>
 
@@ -281,35 +284,6 @@
         <div class="project-image-large">
             <span class="image-placeholder">📊</span>
         </div>
-
-        <!-- Key Features -->
-        <section class="content-section">
-            <h2>Key Features</h2>
-            <ul>
-                <li>Real-time water level measurement using ultrasonic sensors</li>
-                <li>Cloud-based data storage and visualization via Blynk IoT platform</li>
-                <li>Automated SMS/email alerts when critical thresholds are reached</li>
-                <li>Historical data analysis and trend visualization</li>
-                <li>Low-power consumption design for extended deployment</li>
-                <li>Mobile app interface for remote monitoring</li>
-            </ul>
-        </section>
-
-        <!-- Technical Implementation -->
-        <section class="content-section">
-            <h2>Technical Implementation</h2>
-            <p>
-                The system architecture consists of three main layers: sensing layer (ultrasonic sensors), 
-                processing layer (ESP32 microcontroller), and application layer (Blynk cloud platform). 
-                The ESP32 collects water level data at regular intervals and transmits it to the cloud 
-                via WiFi connectivity.
-            </p>
-            <p>
-                Data processing algorithms filter noise and calibrate sensor readings to ensure accuracy. 
-                The Blynk platform provides a user-friendly dashboard for visualization and control, 
-                allowing stakeholders to monitor multiple locations simultaneously.
-            </p>
-        </section>
 
         <!-- Technologies Used -->
         <section class="content-section">
@@ -320,34 +294,9 @@
                 <span class="tech-tag">C++</span>
                 <span class="tech-tag">Blynk IoT</span>
                 <span class="tech-tag">WiFi Protocol</span>
-                <span class="tech-tag">HC-SR04 Sensor</span>
+                <span class="tech-tag">Iduino S045 Sensor</span>
             </div>
         </section>
-
-        <!-- Challenges & Solutions -->
-        <section class="content-section">
-            <h2>Challenges & Solutions</h2>
-            <p>
-                <strong>Challenge:</strong> Ensuring reliable WiFi connectivity in outdoor environments 
-                with potential signal interference.
-            </p>
-            <p>
-                <strong>Solution:</strong> Implemented automatic reconnection protocols and local data 
-                buffering to prevent data loss during connectivity issues.
-            </p>
-            <p style="margin-top: 1.5rem;">
-                <strong>Challenge:</strong> Power management for long-term deployment without frequent 
-                battery replacements.
-            </p>
-            <p>
-                <strong>Solution:</strong> Utilized ESP32's deep sleep mode between measurements and 
-                optimized code to reduce power consumption by 60%.
-            </p>
-        </section>
-
-        <!-- Results & Impact -->
-        <section class="content-section">
-            <h2>Results & Impact</h2>
             <p>
                 The system successfully demonstrated accurate water level monitoring with ±2cm precision. 
                 During testing phase, it provided early warnings for potential flooding events, allowing 
