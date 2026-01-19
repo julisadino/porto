@@ -6,7 +6,7 @@
     <title>Image Processing - Yuliana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,12 +25,13 @@
         }
 
         body {
-            font-family: 'Work Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
         }
 
+        /* Back Button */
         .back-button {
             position: fixed;
             top: 3rem;
@@ -52,9 +53,11 @@
             color: var(--text-primary);
         }
 
+        /* Project Header */
         .project-header {
             padding: 8rem 6rem 4rem 6rem;
             max-width: 900px;
+            margin: 0 auto;
             animation: fadeInUp 1s ease-out;
         }
 
@@ -70,6 +73,7 @@
         }
 
         .project-category {
+            font-family: 'Inter', sans-serif;
             color: var(--accent);
             font-size: 0.9rem;
             font-weight: 500;
@@ -101,6 +105,7 @@
         }
 
         .meta-label {
+            font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             color: var(--text-secondary);
             text-transform: uppercase;
@@ -108,13 +113,16 @@
         }
 
         .meta-value {
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
             color: var(--text-primary);
         }
 
+        /* Project Content */
         .project-content {
             padding: 0 6rem 6rem 6rem;
             max-width: 900px;
+            margin: 0 auto;
         }
 
         .content-section {
@@ -124,13 +132,14 @@
 
         .content-section h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 400;
             margin-bottom: 1.5rem;
             color: var(--text-primary);
         }
 
         .content-section p {
+            font-family: 'Inter', sans-serif;
             color: var(--text-secondary);
             font-size: 1.05rem;
             line-height: 1.8;
@@ -143,6 +152,7 @@
         }
 
         .content-section li {
+            font-family: 'Inter', sans-serif;
             color: var(--text-secondary);
             font-size: 1.05rem;
             line-height: 1.8;
@@ -158,15 +168,24 @@
             color: var(--accent);
         }
 
+        /* Image Container */
         .project-image-large {
             width: 100%;
             height: 500px;
             background: var(--bg-secondary);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .project-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .image-placeholder {
@@ -174,6 +193,7 @@
             opacity: 0.2;
         }
 
+        /* Tech Stack */
         .tech-stack {
             display: flex;
             gap: 1rem;
@@ -182,6 +202,7 @@
         }
 
         .tech-tag {
+            font-family: 'Inter', sans-serif;
             padding: 0.5rem 1.2rem;
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -190,6 +211,7 @@
             color: var(--text-secondary);
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .back-button {
                 left: 2rem;
@@ -228,13 +250,15 @@
     </style>
 </head>
 <body>
+    <!-- Back Button -->
     <div class="back-button">
         <a href="index.html">← Back to Home</a>
     </div>
 
+    <!-- Project Header -->
     <header class="project-header">
-        <div class="project-category">Computer Vision • Bioinformatics</div>
-        <h1>Image Processing for Brix Analysis</h1>
+        <div class="project-category">Computer Vision • Agricultural Technology</div>
+        <h1>Image Processing for Tomato Quality Analysis</h1>
         
         <div class="project-meta">
             <div class="meta-item">
@@ -244,116 +268,66 @@
             <div class="meta-item">
                 <span class="meta-label">Platform</span>
                 <span class="meta-value">Python & OpenCV</span>
+            </div>
         </div>
     </header>
 
+    <!-- Project Content -->
     <main class="project-content">
+        <!-- Overview -->
         <section class="content-section">
             <h2>How I Made it?</h2>
             <p>
-                An advanced image processing pipeline designed specifically for analyzing biological samples 
-                and microscopic imagery. This project bridges the gap between raw biological data and 
-                meaningful insights through sophisticated computer vision algorithms.
+                As the final project for Robotic Tech course, I developed an image processing system to analyze the
+                physical quality parameters of tomatoes. Building a comprehensive GUI application using PyQt5 and Qt Designer,
+                which was integrated with OpenCV for real-time image processing. The system was designed to evaluate
+                tomato quality based on color, size, and sweetness level (Brix) without using destructive testing methods. 
             </p>
             <p>
-                The system processes high-resolution microscopic images to identify, quantify, and analyze 
-                biological structures, enabling researchers to extract quantitative data from visual samples 
-                with unprecedented accuracy and speed.
+                For this project, we captured digital images of tomatoes with different ripeness levels and processed  
+                them using HSV color space segmentation to isolate the fruit from the background. I implemented  
+                adaptive thresholding and morphological operations to improve detection accuracy. The system 
+                automatically estimates physical parameters, including area, weight, dimensions, and Brix content,  
+                based on pixel analysis and RGB color values.
             </p>
         </section>
 
+        <!-- Project Image -->
         <div class="project-image-large">
-            <span class="image-placeholder">🔬</span>
+            <img src="project22.jpg" alt="Tomato Image Processing System">
+            <!-- If no image, gray background will appear -->
         </div>
 
-        <section class="content-section">
-            <h2>Key Features</h2>
-            <ul>
-                <li>Automated cell detection and counting in microscopic images</li>
-                <li>Advanced image enhancement techniques for low-quality samples</li>
-                <li>Segmentation algorithms for isolating biological structures</li>
-                <li>Feature extraction for morphological analysis</li>
-                <li>Batch processing capabilities for large datasets</li>
-                <li>Statistical analysis and visualization of results</li>
-                <li>Export functionality for integration with research workflows</li>
-            </ul>
-        </section>
-
-        <section class="content-section">
-            <h2>Technical Implementation</h2>
-            <p>
-                The image processing pipeline utilizes Python's scientific computing ecosystem, leveraging 
-                OpenCV for core image operations, NumPy for numerical computations, and scikit-image for 
-                advanced processing algorithms. The system implements a modular architecture allowing for 
-                easy customization and extension.
-            </p>
-            <p>
-                Key algorithms include adaptive thresholding for image binarization, morphological operations 
-                for noise reduction, watershed segmentation for separating overlapping cells, and contour 
-                detection for boundary identification. Each processing step is carefully calibrated to handle 
-                the unique challenges of biological imaging.
-            </p>
-        </section>
-
-        <section class="content-section">
-            <h2>Processing Pipeline</h2>
-            <ul>
-                <li><strong>Preprocessing:</strong> Noise reduction, contrast enhancement, and normalization</li>
-                <li><strong>Segmentation:</strong> Separating foreground biological structures from background</li>
-                <li><strong>Feature Detection:</strong> Identifying key biological markers and structures</li>
-                <li><strong>Quantification:</strong> Measuring size, shape, and intensity parameters</li>
-                <li><strong>Classification:</strong> Categorizing structures based on extracted features</li>
-                <li><strong>Visualization:</strong> Generating annotated images and statistical plots</li>
-            </ul>
-        </section>
-
+        <!-- Technologies Used -->
         <section class="content-section">
             <h2>Technologies Used</h2>
             <div class="tech-stack">
                 <span class="tech-tag">Python</span>
                 <span class="tech-tag">OpenCV</span>
+                <span class="tech-tag">PyQt5</span>
+                <span class="tech-tag">Qt Designer</span>
                 <span class="tech-tag">NumPy</span>
-                <span class="tech-tag">scikit-image</span>
-                <span class="tech-tag">Matplotlib</span>
-                <span class="tech-tag">Pandas</span>
-                <span class="tech-tag">Jupyter Notebook</span>
+                <span class="tech-tag">CSV Data Processing</span>
             </div>
         </section>
-
+        
+        <!-- Results -->
         <section class="content-section">
-            <h2>Challenges & Solutions</h2>
             <p>
-                <strong>Challenge:</strong> Handling varying image quality and lighting conditions across 
-                different microscopic samples.
+                The system demonstrated strong correlations between pixel-based measurements and actual 
+                physical parameters. Achieved an R² value of 0.936 for area prediction and 0.961 for 
+                weight estimation, indicating that pixel count is a reliable indicator for these parameters. 
+                The most significant finding was the relationship between RGB color values and Brix content, 
+                where the green component showed the strongest correlation (R² = 0.919), making it the most 
+                reliable predictor for tomato sweetness levels.
             </p>
             <p>
-                <strong>Solution:</strong> Implemented adaptive preprocessing algorithms that automatically 
-                adjust parameters based on image characteristics, ensuring consistent results regardless 
-                of input quality.
-            </p>
-            <p style="margin-top: 1.5rem;">
-                <strong>Challenge:</strong> Accurately segmenting overlapping or touching cells in 
-                dense biological samples.
-            </p>
-            <p>
-                <strong>Solution:</strong> Developed a custom watershed algorithm combined with distance 
-                transform to effectively separate clustered cells while maintaining accurate boundary detection.
-            </p>
-        </section>
-
-        <section class="content-section">
-            <h2>Applications & Impact</h2>
-            <p>
-                This image processing system has been successfully applied to various biological research 
-                scenarios, including cell culture analysis, tissue sample examination, and microorganism 
-                identification. The automated approach reduces analysis time by 80% compared to manual 
-                counting methods while improving accuracy and reproducibility.
-            </p>
-            <p>
-                The project demonstrates the power of computational methods in modern biology, enabling 
-                researchers to process larger datasets and extract more detailed information from their 
-                microscopic observations. Future developments include integration of machine learning models 
-                for automated classification and real-time processing capabilities.
+                Validation tests comparing predicted values with actual measurements showed that the 
+                model performed best for Brix and dimensional parameters. While some deviations occurred in 
+                weight and area predictions for certain samples, the overall trend accuracy was maintained. 
+                This non-destructive testing method proved to be significantly faster and more consistent 
+                than manual evaluation, reducing analysis time while improving objectivity in quality 
+                assessment.
             </p>
         </section>
     </main>
