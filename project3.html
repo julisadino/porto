@@ -6,7 +6,7 @@
     <title>Fuzzy Logic CO₂ Control - Yuliana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,12 +25,13 @@
         }
 
         body {
-            font-family: 'Work Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
         }
 
+        /* Back Button */
         .back-button {
             position: fixed;
             top: 3rem;
@@ -52,9 +53,11 @@
             color: var(--text-primary);
         }
 
+        /* Project Header */
         .project-header {
             padding: 8rem 6rem 4rem 6rem;
             max-width: 900px;
+            margin: 0 auto;
             animation: fadeInUp 1s ease-out;
         }
 
@@ -70,6 +73,7 @@
         }
 
         .project-category {
+            font-family: 'Inter', sans-serif;
             color: var(--accent);
             font-size: 0.9rem;
             font-weight: 500;
@@ -101,6 +105,7 @@
         }
 
         .meta-label {
+            font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             color: var(--text-secondary);
             text-transform: uppercase;
@@ -108,13 +113,16 @@
         }
 
         .meta-value {
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
             color: var(--text-primary);
         }
 
+        /* Project Content */
         .project-content {
             padding: 0 6rem 6rem 6rem;
             max-width: 900px;
+            margin: 0 auto;
         }
 
         .content-section {
@@ -124,13 +132,14 @@
 
         .content-section h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 400;
             margin-bottom: 1.5rem;
             color: var(--text-primary);
         }
 
         .content-section p {
+            font-family: 'Inter', sans-serif;
             color: var(--text-secondary);
             font-size: 1.05rem;
             line-height: 1.8;
@@ -143,6 +152,7 @@
         }
 
         .content-section li {
+            font-family: 'Inter', sans-serif;
             color: var(--text-secondary);
             font-size: 1.05rem;
             line-height: 1.8;
@@ -158,15 +168,24 @@
             color: var(--accent);
         }
 
+        /* Image Container */
         .project-image-large {
             width: 100%;
             height: 500px;
             background: var(--bg-secondary);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .project-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .image-placeholder {
@@ -174,6 +193,7 @@
             opacity: 0.2;
         }
 
+        /* Tech Stack */
         .tech-stack {
             display: flex;
             gap: 1rem;
@@ -182,6 +202,7 @@
         }
 
         .tech-tag {
+            font-family: 'Inter', sans-serif;
             padding: 0.5rem 1.2rem;
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -190,17 +211,19 @@
             color: var(--text-secondary);
         }
 
-        .highlight-box {
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
             background: var(--card-bg);
-            border-left: 3px solid var(--accent);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-top: 1rem;
         }
 
-        .highlight-box p {
-            margin-bottom: 0;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .back-button {
                 left: 2rem;
@@ -239,110 +262,56 @@
     </style>
 </head>
 <body>
+    <!-- Back Button -->
     <div class="back-button">
         <a href="index.html">← Back to Home</a>
     </div>
 
+    <!-- Project Header -->
     <header class="project-header">
-        <div class="project-category">Control Systems • Agricultural Technology</div>
-        <h1>Fuzzy Logic Control for CO₂ Controlled Environment</h1>
+        <div class="project-category">Control Systems • Final Project</div>
+        <h1>Fuzzy Logic Control for CO₂ Regulation</h1>
         
         <div class="project-meta">
             <div class="meta-item">
                 <span class="meta-label">Year</span>
-                <span class="meta-value">2024</span>
+                <span class="meta-value">2026</span>
             </div>
             <div class="meta-item">
                 <span class="meta-label">System</span>
                 <span class="meta-value">Fuzzy Logic Control</span>
             </div>
-            <div class="meta-item">
-                <span class="meta-label">Role</span>
-                <span class="meta-value">System Designer</span>
-            </div>
         </div>
+        
+        <span class="status-badge">🚧 Still Developing</span>
     </header>
 
+    <!-- Project Content -->
     <main class="project-content">
+        <!-- Overview -->
         <section class="content-section">
-            <h2>Overview</h2>
+            <h2>Some overview about it?</h2>
             <p>
-                An intelligent environmental control system that utilizes fuzzy logic algorithms to 
-                maintain optimal CO₂ levels in controlled environments. This project addresses the 
-                complexity of environmental regulation where traditional binary control systems fall 
-                short in handling the nuanced, continuous nature of environmental parameters.
+                This is my final project where I'm developing a fuzzy logic control system to regulate 
+                CO₂ levels in controlled environments. The idea came from the challenge of maintaining 
+                optimal growing conditions in agricultural settings, where traditional on-off control 
+                systems often cause fluctuations that can stress plants.
             </p>
             <p>
-                The system is designed for precision agriculture applications, laboratory controlled 
-                environments, and greenhouse automation, where maintaining specific CO₂ concentrations 
-                is critical for optimal plant growth and experimental conditions.
+                I chose fuzzy logic because it mimics human decision-making better than conventional 
+                controllers. Instead of just "turn on" or "turn off," the system can make gradual 
+                adjustments like "slightly increase ventilation" or "moderately reduce CO₂ injection." 
+                This approach helps maintain more stable environmental conditions while reducing energy 
+                waste from constant switching.
             </p>
         </section>
 
+        <!-- Project Image -->
         <div class="project-image-large">
             <span class="image-placeholder">⚙️</span>
         </div>
 
-        <section class="content-section">
-            <h2>Why Fuzzy Logic?</h2>
-            <p>
-                Unlike traditional control systems that operate on binary ON/OFF logic, fuzzy logic 
-                mimics human decision-making by handling degrees of truth and uncertainty. In environmental 
-                control, conditions are rarely absolute - CO₂ levels might be "slightly high" or "moderately 
-                low," requiring graduated responses rather than abrupt changes.
-            </p>
-            
-            <div class="highlight-box">
-                <p>
-                    <strong>Key Advantage:</strong> Fuzzy logic provides smooth, gradual adjustments that 
-                    prevent system oscillation and energy waste while maintaining tighter control over 
-                    environmental parameters compared to conventional PID controllers.
-                </p>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2>System Architecture</h2>
-            <ul>
-                <li><strong>Input Layer:</strong> CO₂ sensors, temperature sensors, and humidity monitors</li>
-                <li><strong>Fuzzification:</strong> Convert crisp sensor values into fuzzy linguistic terms</li>
-                <li><strong>Inference Engine:</strong> Apply fuzzy rules based on expert knowledge</li>
-                <li><strong>Defuzzification:</strong> Convert fuzzy output to precise control signals</li>
-                <li><strong>Control Layer:</strong> Actuators for ventilation, CO₂ injection, and circulation</li>
-                <li><strong>Monitoring:</strong> Real-time visualization and data logging</li>
-            </ul>
-        </section>
-
-        <section class="content-section">
-            <h2>Fuzzy Rule Base</h2>
-            <p>
-                The control system implements a comprehensive rule base that encodes expert knowledge 
-                about optimal environmental management. Sample rules include:
-            </p>
-            <ul>
-                <li>IF CO₂ is "Very Low" AND rate_of_change is "Decreasing Fast" THEN ventilation is "Closed" AND injection is "High"</li>
-                <li>IF CO₂ is "Slightly High" AND rate_of_change is "Stable" THEN ventilation is "Slightly Open" AND injection is "Off"</li>
-                <li>IF CO₂ is "Optimal" AND rate_of_change is "Stable" THEN maintain current settings</li>
-            </ul>
-            <p>
-                These rules allow the system to respond appropriately to various scenarios, considering 
-                both current conditions and trends.
-            </p>
-        </section>
-
-        <section class="content-section">
-            <h2>Key Features</h2>
-            <ul>
-                <li>Adaptive control that responds to environmental changes smoothly</li>
-                <li>Multi-parameter consideration (CO₂, temperature, humidity correlation)</li>
-                <li>Energy-efficient operation through optimized actuator control</li>
-                <li>Reduced system oscillation compared to traditional controllers</li>
-                <li>User-friendly interface for setting target parameters</li>
-                <li>Historical data analysis and performance metrics</li>
-                <li>Alert system for abnormal conditions</li>
-            </ul>
-        </section>
-
+        <!-- Technologies Used -->
         <section class="content-section">
             <h2>Technologies Used</h2>
             <div class="tech-stack">
@@ -350,59 +319,31 @@
                 <span class="tech-tag">scikit-fuzzy</span>
                 <span class="tech-tag">NumPy</span>
                 <span class="tech-tag">Matplotlib</span>
-                <span class="tech-tag">Arduino/Microcontroller</span>
-                <span class="tech-tag">MQTT Protocol</span>
+                <span class="tech-tag">Arduino</span>
+                <span class="tech-tag">CO₂ Sensors</span>
             </div>
         </section>
-
-        <section class="content-section">
-            <h2>Implementation Challenges</h2>
             <p>
-                <strong>Challenge:</strong> Defining appropriate membership functions and rule bases 
-                without extensive experimental data.
+                The system reads CO₂ levels from sensors and uses fuzzy logic rules to determine the 
+                appropriate response. For example, if CO₂ is "slightly high" and rising slowly, it might 
+                open ventilation a little bit. But if CO₂ is "very high" and rising fast, it would open 
+                ventilation fully and stop CO₂ injection immediately.
             </p>
             <p>
-                <strong>Solution:</strong> Conducted iterative testing and tuning, starting with 
-                conservative rules and refining based on system response. Implemented adaptive learning 
-                mechanisms to optimize parameters over time.
-            </p>
-            <p style="margin-top: 1.5rem;">
-                <strong>Challenge:</strong> Balancing control precision with system stability to avoid 
-                excessive actuator cycling.
-            </p>
-            <p>
-                <strong>Solution:</strong> Introduced hysteresis in the fuzzy rules and implemented 
-                time-based constraints to prevent rapid switching, ensuring smooth operation while 
-                maintaining control accuracy.
+                I'm currently working on fine-tuning the fuzzy rules and testing different membership 
+                functions to see which configurations give the smoothest control. The goal is to maintain 
+                CO₂ levels within a tight range without causing the rapid on-off cycling that happens with 
+                simpler control methods.
             </p>
         </section>
-
-        <section class="content-section">
-            <h2>Results & Performance</h2>
             <p>
-                The fuzzy logic controller successfully maintained CO₂ levels within ±50 ppm of the 
-                target setpoint, representing a 40% improvement over traditional ON/OFF control systems. 
-                Energy consumption was reduced by 25% through more efficient actuator operation, and 
-                system stability improved significantly with elimination of rapid cycling behavior.
+                So far, I've completed the initial design of the fuzzy logic controller and tested it 
+                in simulation. The preliminary results look promising, showing better stability compared 
+                to traditional PID control. I'm now working on the hardware integration and planning field 
+                tests to validate the system under real conditions.
             </p>
-            
-            <div class="highlight-box">
-                <p>
-                    <strong>Impact:</strong> In greenhouse testing, plants showed 15% improved growth 
-                    rates compared to conventional control methods, attributed to more stable environmental 
-                    conditions and optimal CO₂ availability throughout the growing cycle.
-                </p>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2>Future Developments</h2>
             <p>
-                Future enhancements include integration of machine learning algorithms to automatically 
-                optimize fuzzy rules based on historical performance data, expansion to multi-zone control 
-                for larger facilities, and development of a mobile app for remote monitoring and control. 
-                Additional research will explore adaptive fuzzy systems that can self-tune in response to 
-                seasonal variations and different crop requirements.
+                This project is still in development as part of my final undergraduate work. 
             </p>
         </section>
     </main>
