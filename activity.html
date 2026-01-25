@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity - Yuliana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #7c8a92;
+            --accent-hover: #9fb0ba;
+            --card-bg: #151515;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 3rem 4rem;
+            z-index: 1000;
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            top: 3rem;
+            left: 4rem;
+            z-index: 1000;
+        }
+
+        .back-button a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .back-button a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 12rem 4rem 4rem 6rem;
+            max-width: 1200px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .page-subtitle {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 400;
+            max-width: 700px;
+        }
+
+        /* Activity Section */
+        .activity-section {
+            padding: 2rem 4rem 6rem 6rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Activity Grid */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem 3rem;
+            margin-top: 2rem;
+        }
+
+        .activity-card {
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: none;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-image {
+            width: 100%;
+            max-width: 450px;
+            height: 280px;
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover .activity-image {
+            transform: scale(1.05);
+        }
+
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .activity-placeholder {
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+        }
+
+        .activity-content {
+            padding: 0;
+        }
+
+        .activity-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .activity-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .activity-description {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(124, 138, 146, 0.1);
+            border: 1px solid rgba(124, 138, 146, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-badge:hover {
+            background: rgba(124, 138, 146, 0.15);
+            border-color: var(--accent-hover);
+        }
+
+        .badge-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 4rem 3rem 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-weight: 400;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .copyright {
+            font-family: 'Inter', sans-serif;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 2rem 2rem;
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .back-button {
+                top: 2rem;
+                left: 2rem;
+            }
+
+            .header-section {
+                padding: 8rem 2rem 2rem 2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .activity-section {
+                padding: 2rem 2rem 4rem 2rem;
+            }
+
+            .activity-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .activity-image {
+                max-width: 100%;
+                height: 220px;
+            }
+
+            footer {
+                padding: 4rem 2rem 2rem 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <div class="back-button">
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html#projects">Projects</a>
+        <a href="activity.html">Activity</a>
+        <a href="#hall-of-shame">Hall of Shame</a>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="header-section">
+        <h1 class="page-title">Activity</h1>
+        <p class="page-subtitle">
+            A collection of experiences, programs, and roles that shaped my journey in engineering and beyond.
+        </p>
+    </section>
+
+    <!-- Activity Section -->
+    <section class="activity-section">
+        <div class="activity-grid">
+            <!-- Activity 1: Exchange Program -->
+            <article class="activity-card">
+                <div class="activity-image">
+                    <img src="images/exchange-kyoto.jpg" alt="Exchange Program Kyoto" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="activity-placeholder" style="display: none;">🌏</div>
+                </div>
+                <div class="activity-content">
+                    <h3 class="activity-title">Student Exchange Program</h3>
+                    <p class="activity-meta">Kyoto University • 2024</p>
+                    <p class="activity-description">
+                        Participated in a cross-cultural exchange program focusing on sustainable agriculture and 
+                        biosystem engineering. Collaborated with international students on research projects and 
+                        gained insights into advanced Japanese agricultural technologies.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Activity 2: Programming Assistant -->
+            <article class="activity-card">
+                <div class="activity-image">
+                    <img src="images/cert-programming.jpg" alt="Programming Assistant Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="activity-placeholder" style="display: none;">💻</div>
+                </div>
+                <div class="activity-content">
+                    <h3 class="activity-title">Programming Laboratory Assistant</h3>
+                    <p class="activity-meta">IPB University • 2024-2025</p>
+                    <p class="activity-description">
+                        Assisted in teaching fundamental programming concepts to engineering students. 
+                        Guided students through Python programming exercises, debugging sessions, and 
+                        project development while managing laboratory sessions.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Activity 3: Chemistry Assistant -->
+            <article class="activity-card">
+                <div class="activity-image">
+                    <img src="images/cert-chemistry.jpg" alt="Chemistry Assistant Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="activity-placeholder" style="display: none;">🧪</div>
+                </div>
+                <div class="activity-content">
+                    <h3 class="activity-title">Chemistry Laboratory Assistant</h3>
+                    <p class="activity-meta">IPB University • 2023-2024</p>
+                    <p class="activity-description">
+                        Facilitated chemistry laboratory sessions for first-year engineering students. 
+                        Supervised experimental procedures, ensured laboratory safety protocols, and 
+                        assisted students in understanding chemical analysis techniques and proper lab practices.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Activity 4: Internship -->
+            <article class="activity-card">
+                <div class="activity-image">
+                    <img src="images/internship.jpg" alt="Internship Experience" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="activity-placeholder" style="display: none;">🏢</div>
+                </div>
+                <div class="activity-content">
+                    <h3 class="activity-title">Engineering Intern</h3>
+                    <p class="activity-meta">Tech Agriculture Solutions • Summer 2024</p>
+                    <p class="activity-description">
+                        Contributed to the development of IoT-based precision agriculture systems. 
+                        Worked on sensor integration, data collection processes, and assisted in 
+                        creating monitoring dashboards for smart farming applications.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="footer-links">
+                    <a href="mailto:yulianadrnh1@gmail.com">Email</a>
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2026 Yuliana. Designed inspired by latishab.</p>
+        </div>
+    </footer>
+</body>
+</html>
