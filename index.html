@@ -160,6 +160,52 @@
             text-decoration-color: var(--accent-hover);
         }
 
+        /* CV and Certifications Section */
+        .credentials {
+            margin-top: 2rem;
+            padding-left: 1.8rem;
+        }
+
+        .credentials-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .credentials-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .credential-link {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .credential-link:hover {
+            border-color: var(--accent);
+            background: rgba(124, 138, 146, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .credential-link.cv {
+            background: rgba(124, 138, 146, 0.15);
+            border-color: var(--accent);
+        }
+
         /* Projects Section */
         .projects-section {
             padding: 8rem 4rem 4rem 6rem;
@@ -337,6 +383,19 @@
                 font-size: 1rem;
             }
 
+            .credentials {
+                padding-left: 0;
+            }
+
+            .credentials-links {
+                gap: 1rem;
+            }
+
+            .credential-link {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+
             .projects-section {
                 padding: 4rem 2rem;
             }
@@ -376,7 +435,7 @@
     <!-- Navigation -->
     <nav>
         <a href="#projects">Projects</a>
-        <a href="activity.html">Activity</a>
+        <a href="#activity">Activity</a>
         <a href="#hall-of-shame">Hall of Shame</a>
     </nav>
 
@@ -392,6 +451,16 @@
         <div class="status">
             <span class="status-dot"></span>
             <span class="status-text">Mechanical and Biosystem Engineering Student @ <a href="https://ipb.ac.id" target="_blank">IPB University</a></span>
+        </div>
+
+        <!-- CV and Certifications -->
+        <div class="credentials">
+            <div class="credentials-links">
+                <a href="https://drive.google.com/file/d/1V7RnmUc0JRLwsT9IPpbrYrWJHO2oq61_/view?usp=sharing" target="_blank" class="credential-link cv">View CV</a>
+                <a href="https://drive.google.com/file/d/1R5uqbmoJWAm0NA0P_sa54mzZj8bc4kpw/view?usp=sharing" target="_blank" class="credential-link">Student Exchange Program to Kyoto University</a>
+                <a href="https://drive.google.com/file/d/1n_meccf_2G3LX0jRk1Nm6QqGlXkp7iRm/view?usp=sharing" target="_blank" class="credential-link">Programming Laboratory Assistant</a>
+                <a href="https://drive.google.com/drive/folders/1KNvvBH69lqm_ohbznjh-eKjWaGb5Pfef?usp=drive_link" target="_blank" class="credential-link">Chemistry Laboratory Assistant</a>
+            </div>
         </div>
     </section>
 
@@ -467,4 +536,8 @@
         </div>
 
         <div class="copyright">
-            <p>© 2026 Yuliana. Designed inspired by latishab.
+            <p>© 2026 Yuliana. Designed inspired by latishab.</p>
+        </div>
+    </footer>
+</body>
+</html>
