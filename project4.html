@@ -1,1 +1,342 @@
-yuh
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization - Yuliana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #7c8a92;
+            --accent-hover: #9fb0ba;
+            --card-bg: #151515;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 3rem;
+            left: 4rem;
+            z-index: 1000;
+        }
+
+        .back-button a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 8rem 6rem 4rem 6rem;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-category {
+            font-family: 'Inter', sans-serif;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 0 6rem 6rem 6rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .content-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .content-section li {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Image Container */
+        .project-image-large {
+            width: 100%;
+            height: 500px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .project-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-placeholder {
+            font-size: 6rem;
+            opacity: 0.2;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            font-family: 'Inter', sans-serif;
+            padding: 0.5rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .back-button {
+                left: 2rem;
+                top: 2rem;
+            }
+
+            .project-header {
+                padding: 6rem 2rem 3rem 2rem;
+            }
+
+            .project-content {
+                padding: 0 2rem 4rem 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .project-meta {
+                gap: 2rem;
+            }
+
+            .project-image-large {
+                height: 300px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <div class="back-button">
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Project Header -->
+    <header class="project-header">
+        <div class="project-category">Data Visualization • SAP Training</div>
+        <h1>Data Modeling with SAP Analytics Cloud</h1>
+        
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Year</span>
+                <span class="meta-value">2026</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Platform</span>
+                <span class="meta-value">SAP Analytics Cloud</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Content -->
+    <main class="project-content">
+        <!-- Overview -->
+        <section class="content-section">
+            <h2>How it Made?</h2>
+            <p>
+                I've always enjoyed learning new things, especially when they let me explore tools I've never
+                used before. One of those experiences was joining the ASEAN Data Science Explorers (ADSE)
+                training program, where I had the opportunity to learn SAP Analytics Cloud (SAC) through a
+                hands-on project using a public dataset.
+            </p>
+            <p>
+                The project started with a raw Excel file containing case counts, testing data, and vaccination
+                statistics from countries around the world. Rather than jumping straight into visualization, I
+                first learned how to build a proper data model in SAC by identifying which fields should be
+                treated as measures or dimensions. One interesting challenge was handling cumulative metrics
+                such as total cases, where I applied {Last Value by Date} exception aggregation so the numbers
+                would reflect the latest recorded value instead of being incorrectly summed over time.
+            </p>
+        </section>
+
+        <!-- Project Image -->
+        <div class="project-image-large">
+            <img src="images/project44.jpg" alt="SAC Data Model and Dashboard Overview">
+        </div>
+
+        <!-- Technologies Used -->
+        <section class="content-section">
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">SAP Analytics Cloud</span>
+                <span class="tech-tag">Data Modeling</span>
+                <span class="tech-tag">Excel</span>
+                <span class="tech-tag">KPI & Ranking Charts</span>
+                <span class="tech-tag">Time Series Forecasting</span>
+                <span class="tech-tag">Filter Data</span>
+            </div>
+        </section>
+        
+        <!-- Results -->
+        <section class="content-section">
+            <p>
+                Once the data model was ready, I transformed it into an interactive dashboard. I experimented
+                with different visualization types, from ranked bar charts highlighting countries with the
+                highest new cases and testing activity, to time series charts that tracked the progression of
+                cases over time, complete with SAC's built-in forecasting feature. I also created a KPI
+                indicator to monitor positivity rates and narrowed the analysis to the 11 ASEAN member countries
+                using location filters, making it much easier to compare regional trends without the noise of
+                global data. I tried customizing the dashboard's visual style (not really good as you can see,
+                just a random gradient #willearnmore). It is still something I am learning, but it was a fun
+                part of the process.
+            </p>
+
+        <div class="project-image-large">
+            <img src="images/project444.jpg" alt="Dashboard Detail">
+        </div>
+            <p>
+                It's all about learning to present information in a way that supports better decisions. Applying
+                ranking filters, removing aggregate categories such as "World" and continental rollups, and
+                focusing on country-level comparisons made the analysis far more meaningful. Looking
+                specifically at ASEAN also revealed differences in data availability, such as countries with
+                much sparser testing records, reminding me that data should always be interpreted within its
+                context. Fun, I'd love to learn more with it!
+            </p>
+        </section>
+    </main>
+</body>
+</html>
