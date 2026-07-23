@@ -6,7 +6,7 @@
     <title>Portofolio Yuliana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -22,6 +22,17 @@
             --accent: #7c8a92;
             --accent-hover: #9fb0ba;
             --card-bg: #151515;
+
+            /* y2k palette, only used when .y2k is active */
+            --y2k-cream: #FFF8EA;
+            --y2k-paper: #FFFDF7;
+            --y2k-ink: #191308;
+            --y2k-pink: #FF3E9A;
+            --y2k-blue: #2D9CFF;
+            --y2k-lime: #C8FF3D;
+            --y2k-yellow: #FFD93D;
+            --y2k-purple: #8A3FFC;
+            --y2k-orange: #FF8A3D;
         }
 
         body {
@@ -31,6 +42,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             font-weight: 400;
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
         /* Navigation */
@@ -41,9 +53,11 @@
             padding: 3rem 4rem;
             z-index: 1000;
             display: flex;
+            align-items: center;
             gap: 2.5rem;
             font-size: 0.95rem;
             letter-spacing: 0.5px;
+            transition: top 0.4s ease;
         }
 
         nav a {
@@ -73,6 +87,37 @@
             width: 100%;
         }
 
+        /* Theme toggle — the mysterious round heart button */
+        .theme-toggle {
+            appearance: none;
+            border: none;
+            cursor: pointer;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #FF7CC0, #FF3E9A 55%, #E0197D 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.15), 0 4px 14px rgba(0,0,0,0.4);
+            animation: toggle-pulse 2.4s ease-in-out infinite;
+            transition: transform 0.25s cubic-bezier(.34,1.56,.64,1);
+            flex-shrink: 0;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.15) rotate(-8deg);
+        }
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25));
+        }
+        @keyframes toggle-pulse {
+            0%, 100% { box-shadow: 0 0 0 2px rgba(255,255,255,0.15), 0 4px 14px rgba(0,0,0,0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(255,62,154,0.35), 0 4px 20px rgba(0,0,0,0.5); }
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -82,6 +127,7 @@
             padding: 0 4rem 0 6rem;
             max-width: 900px;
             animation: fadeInUp 1s ease-out;
+            position: relative;
         }
 
         @keyframes fadeInUp {
@@ -166,15 +212,6 @@
             padding-left: 1.8rem;
         }
 
-        .credentials-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
         .credentials-links {
             display: flex;
             flex-wrap: wrap;
@@ -244,7 +281,7 @@
             border-radius: 0;
             overflow: visible;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: none;
         }
 
@@ -275,12 +312,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .project-placeholder {
-            font-size: 4rem;
-            color: var(--accent);
-            opacity: 0.3;
         }
 
         .project-content {
@@ -362,6 +393,291 @@
             font-weight: 400;
         }
 
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* ================================
+           Y2K-only elements (hidden by default)
+           ================================ */
+        .marquee, .blob, .stickers, .eyebrow, .rainbow-bar {
+            display: none;
+        }
+
+        .marquee {
+            position: relative;
+            z-index: 1001;
+            width: 100%;
+            overflow: hidden;
+            background: var(--y2k-ink);
+            color: var(--y2k-paper);
+            border-bottom: 3px solid var(--y2k-ink);
+            padding: 0.55rem 0;
+            white-space: nowrap;
+        }
+        .marquee-track {
+            display: inline-block;
+            animation: scrollmarquee 24s linear infinite;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .marquee-track span { margin: 0 1.2rem; }
+        .marquee-track span.hl { color: var(--y2k-lime); }
+        @keyframes scrollmarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .blob1 { width: 420px; height: 420px; background: var(--y2k-pink); top: -140px; left: -120px; animation: drift1 22s ease-in-out infinite; }
+        .blob2 { width: 380px; height: 380px; background: var(--y2k-blue); bottom: -160px; right: -100px; animation: drift2 26s ease-in-out infinite; }
+        .blob3 { width: 300px; height: 300px; background: var(--y2k-yellow); top: 40%; right: 10%; animation: drift3 30s ease-in-out infinite; opacity: 0.35; }
+        @keyframes drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(60px,80px); } }
+        @keyframes drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-50px,-60px); } }
+        @keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px,40px) scale(1.15); } }
+
+        .eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--y2k-ink);
+        }
+        .eyebrow .dot {
+            width: 9px; height: 9px; border-radius: 50%;
+            background: var(--y2k-pink);
+            display: inline-block;
+            animation: blink 1.6s ease-in-out infinite;
+        }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+        .stickers {
+            position: absolute;
+            top: 2rem;
+            right: 5rem;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 3;
+        }
+        .sticker {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.7rem 1rem;
+            border: 2px solid var(--y2k-ink);
+            border-radius: 50px;
+            box-shadow: 3px 3px 0 var(--y2k-ink);
+            max-width: 170px;
+            text-align: center;
+            cursor: default;
+            transition: transform 0.25s cubic-bezier(.34,1.56,.64,1);
+        }
+        .sticker:hover { transform: scale(1.12) rotate(0deg) !important; }
+        .sticker:nth-child(1) { background: var(--y2k-pink); color: var(--y2k-paper); transform: rotate(6deg); }
+        .sticker:nth-child(2) { background: var(--y2k-yellow); color: var(--y2k-ink); transform: rotate(-4deg); align-self: flex-end; }
+        .sticker:nth-child(3) { background: var(--y2k-blue); color: var(--y2k-paper); transform: rotate(3deg); }
+
+        .rainbow-bar {
+            height: 8px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--y2k-pink), var(--y2k-orange), var(--y2k-yellow), var(--y2k-lime), var(--y2k-blue), var(--y2k-purple));
+            border-radius: 100px;
+            margin-bottom: 2.5rem;
+        }
+
+        .confetti-piece {
+            position: fixed;
+            top: 0; left: 0;
+            width: 8px; height: 8px;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 2000;
+            will-change: transform, opacity;
+        }
+        .sparkle {
+            position: fixed;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1500;
+            animation: sparkfade 0.7s ease-out forwards;
+        }
+        @keyframes sparkfade { to { transform: scale(0); opacity: 0; } }
+
+        /* ================================
+           Y2K MODE — activated on body.y2k
+           ================================ */
+        body.y2k {
+            --bg-primary: var(--y2k-cream);
+            --bg-secondary: var(--y2k-paper);
+            --text-primary: var(--y2k-ink);
+            --text-secondary: #5a5140;
+            --accent: var(--y2k-pink);
+            --accent-hover: var(--y2k-purple);
+            --card-bg: var(--y2k-paper);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body.y2k .marquee,
+        body.y2k .blob,
+        body.y2k .rainbow-bar { display: block; }
+        body.y2k .stickers { display: flex; }
+        body.y2k .eyebrow { display: inline-flex; }
+
+        body.y2k nav { top: 2.6rem; }
+        body.y2k nav a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--y2k-ink);
+            border-radius: 100px;
+            background: var(--y2k-paper);
+        }
+        body.y2k nav a::after { display: none; }
+        body.y2k nav a:nth-child(2):hover { background: var(--y2k-pink); transform: translateY(-2px) rotate(-2deg); display:inline-block; }
+        body.y2k nav a:nth-child(3):hover { background: var(--y2k-blue); color: var(--y2k-paper); transform: translateY(-2px) rotate(2deg); display:inline-block; }
+        body.y2k nav a:nth-child(4):hover { background: var(--y2k-lime); transform: translateY(-2px) rotate(-2deg); display:inline-block; }
+
+        body.y2k .hero { padding-top: 3rem; }
+
+        body.y2k h1 {
+            font-family: 'Bungee', cursive;
+            font-size: clamp(3.4rem, 11vw, 7.5rem);
+            line-height: 0.95;
+            letter-spacing: 1px;
+            -webkit-text-stroke: 3px var(--y2k-ink);
+            color: var(--y2k-yellow);
+            background: linear-gradient(100deg, var(--y2k-pink), var(--y2k-orange) 30%, var(--y2k-yellow) 55%, var(--y2k-lime) 75%, var(--y2k-blue) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.y2k .bio mark {
+            background: var(--y2k-lime);
+            color: var(--y2k-ink);
+            padding: 0.05em 0.3em;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        body.y2k .bio mark.b { background: var(--y2k-blue); color: var(--y2k-paper); }
+        body.y2k .bio mark.p { background: var(--y2k-pink); color: var(--y2k-paper); }
+
+        body.y2k .status {
+            display: inline-flex;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            background: var(--y2k-paper);
+            border: 2px solid var(--y2k-ink);
+            border-radius: 100px;
+            padding: 0.6rem 1.2rem 0.6rem 0.9rem;
+            box-shadow: 4px 4px 0 var(--y2k-ink);
+            margin-top: 1.5rem;
+        }
+        body.y2k .status-dot { background: var(--y2k-purple); }
+
+        body.y2k .credentials { padding-left: 0; }
+        body.y2k .credential-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.82rem;
+            padding: 0.65rem 1.2rem;
+            border: 2px solid var(--y2k-ink);
+            border-radius: 10px;
+            background: var(--y2k-paper);
+            box-shadow: 3px 3px 0 var(--y2k-ink);
+        }
+        body.y2k .credential-link:nth-child(1) { transform: rotate(-1.5deg); }
+        body.y2k .credential-link:nth-child(2) { transform: rotate(1deg); }
+        body.y2k .credential-link:nth-child(3) { transform: rotate(-1deg); }
+        body.y2k .credential-link:nth-child(4) { transform: rotate(1.5deg); }
+        body.y2k .credential-link:hover {
+            transform: translate(-2px,-4px) rotate(0deg) !important;
+            box-shadow: 6px 6px 0 var(--y2k-ink);
+            background: var(--y2k-paper);
+        }
+        body.y2k .credential-link.cv { background: var(--y2k-lime); }
+        body.y2k .credential-link.cv:hover { background: var(--y2k-pink); color: var(--y2k-paper); }
+
+        body.y2k .projects-section { position: relative; z-index: 2; }
+        body.y2k .section-title {
+            font-family: 'Bungee', cursive;
+            color: var(--y2k-paper);
+            -webkit-text-stroke: 2.5px var(--y2k-ink);
+            display: inline-block;
+            background: var(--y2k-purple);
+            padding: 0.3rem 1rem;
+            border-radius: 12px;
+            transform: rotate(-1.5deg);
+            box-shadow: 5px 5px 0 var(--y2k-ink);
+        }
+        body.y2k .section-subtitle { font-family: 'Space Mono', monospace; }
+
+        body.y2k .project-card {
+            background: var(--y2k-paper);
+            border: 3px solid var(--y2k-ink);
+            border-radius: 18px;
+            padding: 1.3rem;
+        }
+        body.y2k .projects-grid a:nth-child(1) .project-card { transform: rotate(-1.4deg); box-shadow: 7px 7px 0 var(--y2k-pink); }
+        body.y2k .projects-grid a:nth-child(2) .project-card { transform: rotate(1.1deg); box-shadow: 7px 7px 0 var(--y2k-blue); }
+        body.y2k .projects-grid a:nth-child(3) .project-card { transform: rotate(-0.8deg); box-shadow: 7px 7px 0 var(--y2k-lime); }
+        body.y2k .projects-grid a:nth-child(4) .project-card { transform: rotate(1.3deg); box-shadow: 7px 7px 0 var(--y2k-yellow); }
+        body.y2k .project-card:hover {
+            transform: rotate(0deg) translateY(-6px) !important;
+            box-shadow: 10px 10px 0 var(--y2k-ink) !important;
+        }
+        body.y2k .project-image {
+            border: 2.5px solid var(--y2k-ink);
+            max-width: 100%;
+        }
+        body.y2k .project-title {
+            font-family: 'Bungee', cursive;
+            font-size: 1.25rem;
+        }
+        body.y2k .project-year {
+            font-family: 'Space Mono', monospace;
+            display: inline-block;
+            background: var(--y2k-ink);
+            color: var(--y2k-paper);
+            padding: 0.25rem 0.7rem;
+            border-radius: 100px;
+        }
+
+        body.y2k footer { position: relative; z-index: 2; }
+        body.y2k .footer-section h3 {
+            font-family: 'Bungee', cursive;
+            -webkit-text-stroke: 1.5px var(--y2k-ink);
+            color: var(--y2k-yellow);
+        }
+        body.y2k .footer-links a { font-family: 'Space Mono', monospace; }
+        body.y2k .footer-links a:hover { border-bottom: 2px solid var(--y2k-pink); }
+        body.y2k .copyright {
+            font-family: 'Space Mono', monospace;
+            border-top: 2px dashed var(--y2k-ink);
+            color: #5a5140;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .blob, .marquee-track, .eyebrow .dot, .status-dot, .theme-toggle { animation: none !important; }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             nav {
@@ -369,11 +685,13 @@
                 gap: 1.5rem;
                 font-size: 0.9rem;
             }
+            body.y2k nav { top: 2.6rem; }
 
             .hero {
                 padding: 0 2rem;
                 min-height: 90vh;
             }
+            body.y2k .hero { padding-top: 2rem; }
 
             h1 {
                 font-size: 2.5rem;
@@ -417,35 +735,59 @@
             .footer-content {
                 flex-direction: column;
             }
+
+            .stickers { display: none !important; }
         }
 
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Selection color */
-        ::selection {
-            background: var(--accent);
-            color: var(--bg-primary);
+        @media (max-width: 1100px) {
+            body.y2k .stickers { display: none !important; }
         }
     </style>
 </head>
 <body>
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>THENKS YEW TO LAGU DJ ANGKOT DANGDUT AND PHONK</span><span class="hl">★</span>
+            <span>KOPKEN HARGA MATI</span><span class="hl">★</span>
+            <span>AYAM PENYET CABE IJO</span><span class="hl">★</span>
+            <span>HIRE SAYA UTK UNLOCK POTENSI SAYA YG KEREN! #OPTIMIS</span><span class="hl">★</span>
+            <span>THENKS YEW TO LAGU DJ ANGKOT DANGDUT AND PHONK</span><span class="hl">★</span>
+            <span>KOPKEN HARGA MATI</span><span class="hl">★</span>
+            <span>AYAM PENYET CABE IJO</span><span class="hl">★</span>
+            <span>HIRE SAYA UTK UNLOCK POTENSI SAYA YG KEREN! #OPTIMIS</span><span class="hl">★</span>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav>
+        <button class="theme-toggle" id="themeToggle" aria-label="mystery button, click me">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.3-8.1C1.02 10.8 1 8.2 2.9 6.4 4.7 4.7 7.4 4.9 9 6.7L12 10l3-3.3c1.6-1.8 4.3-2 6.1-.3 1.9 1.8 1.88 4.4.2 6.5C18.7 16.65 12 21 12 21z"/></svg>
+        </button>
         <a href="#projects">Projects</a>
         <a href="#activity">Activity</a>
         <a href="#hall-of-shame">Hall of Shame</a>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="heroSection">
+        <div class="stickers">
+            <div class="sticker">npm run<br>overthink</div>
+            <div class="sticker">certified<br>plant parent<br>(CO₂ edition)</div>
+            <div class="sticker">not a<br>chatbot,<br>promise</div>
+        </div>
+
+        <div class="eyebrow"><span class="dot"></span> currently compiling a thesis</div>
+
         <h1>Yuliana</h1>
         
         <p class="bio">
-            Mechanical and Biosystem Engineering student, focused in Bioinformatics division. 
-            I'm exploring Internet of Things (IoT) and currently figuring out how data driven fuzzy logic systems work.
+            Mechanical and Biosystem Engineering student, focused in <mark>Bioinformatics</mark> division. 
+            I'm exploring <mark class="b">Internet of Things (IoT)</mark> and currently figuring out how data driven <mark class="p">fuzzy logic</mark> systems work.
         </p>
 
         <div class="status">
@@ -456,7 +798,7 @@
         <!-- CV and Certifications -->
         <div class="credentials">
             <div class="credentials-links">
-                <a href="https://drive.google.com/file/d/1V7RnmUc0JRLwsT9IPpbrYrWJHO2oq61_/view?usp=sharing" target="_blank" class="credential-link cv">View CV</a>
+                <a href="https://drive.google.com/file/d/1V7RnmUc0JRLwsT9IPpbrYrWJHO2oq61_/view?usp=sharing" target="_blank" class="credential-link cv" id="cvLink">View CV</a>
                 <a href="https://drive.google.com/file/d/1FEdclgOvfkQUZ76_GUAEyuHVHYTrf1J3/view?usp=drivesdk" target="_blank" class="credential-link">Student Exchange Program to Kyoto University</a>
                 <a href="https://drive.google.com/file/d/1n_meccf_2G3LX0jRk1Nm6QqGlXkp7iRm/view?usp=sharing" target="_blank" class="credential-link">Programming Laboratory Assistant</a>
                 <a href="https://drive.google.com/drive/folders/1KNvvBH69lqm_ohbznjh-eKjWaGb5Pfef?usp=drive_link" target="_blank" class="credential-link">Chemistry Laboratory Assistant</a>
@@ -531,7 +873,8 @@
                         <h3 class="project-title" style="text-decoration: underline;">SAP Analytics Cloud Training</h3>
                         <p class="project-year">SAP Analytics Cloud • 2026</p>
                         <p class="project-description">
-                            A not so very SAP journey, but I learned something.
+                            A not so very SAP journey, but I learned something: turning spreadsheet chaos 
+                            into dashboards, stories, and predictive models without breaking a sweat (mostly).
                         </p>
                     </div>
                 </article>
@@ -541,6 +884,7 @@
 
     <!-- Footer -->
     <footer>
+        <div class="rainbow-bar"></div>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Connect</h3>
@@ -552,8 +896,69 @@
         </div>
 
         <div class="copyright">
-            <p>© 2026 Yuliana.</p>
+            <p>© 2026 Yuliana. Designed inspired by latishab.</p>
         </div>
     </footer>
+
+<script>
+(function(){
+    var body = document.body;
+    var toggle = document.getElementById('themeToggle');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var colors = ['#FF3E9A','#2D9CFF','#C8FF3D','#FFD93D','#8A3FFC'];
+
+    toggle.addEventListener('click', function(){
+        body.classList.toggle('y2k');
+    });
+
+    // sparkle trail — only inside the hero, only in y2k mode
+    var hero = document.getElementById('heroSection');
+    var lastSpark = 0;
+    if (hero) {
+        hero.addEventListener('mousemove', function(e){
+            if (!body.classList.contains('y2k') || reduceMotion) return;
+            var now = Date.now();
+            if (now - lastSpark < 60) return;
+            lastSpark = now;
+            var s = document.createElement('div');
+            s.className = 'sparkle';
+            s.style.left = (e.clientX - 3) + 'px';
+            s.style.top = (e.clientY - 3) + 'px';
+            s.style.background = colors[Math.floor(Math.random()*colors.length)];
+            document.body.appendChild(s);
+            setTimeout(function(){ s.remove(); }, 700);
+        });
+    }
+
+    // confetti burst on CV click — only in y2k mode
+    var cv = document.getElementById('cvLink');
+    if (cv) {
+        cv.addEventListener('click', function(){
+            if (!body.classList.contains('y2k') || reduceMotion) return;
+            var rect = cv.getBoundingClientRect();
+            var originX = rect.left + rect.width/2;
+            var originY = rect.top + rect.height/2;
+            for (var i=0; i<22; i++) {
+                var p = document.createElement('div');
+                p.className = 'confetti-piece';
+                p.style.background = colors[Math.floor(Math.random()*colors.length)];
+                p.style.left = originX + 'px';
+                p.style.top = originY + 'px';
+                document.body.appendChild(p);
+                var angle = Math.random()*Math.PI*2;
+                var dist = 60 + Math.random()*90;
+                var dx = Math.cos(angle)*dist;
+                var dy = Math.sin(angle)*dist - 40;
+                var rot = Math.random()*720 - 360;
+                p.animate([
+                    { transform:'translate(0,0) rotate(0deg)', opacity:1 },
+                    { transform:'translate('+dx+'px,'+dy+'px) rotate('+rot+'deg)', opacity:0 }
+                ], { duration: 700 + Math.random()*400, easing:'cubic-bezier(.2,.7,.4,1)' });
+                (function(piece){ setTimeout(function(){ piece.remove(); }, 1200); })(p);
+            }
+        });
+    }
+})();
+</script>
 </body>
 </html>
