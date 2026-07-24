@@ -33,6 +33,7 @@
             --y2k-yellow: #FFD93D;
             --y2k-purple: #8A3FFC;
             --y2k-orange: #FF8A3D;
+            --y2k-idpink: #FFD3E6;
         }
 
         body {
@@ -413,7 +414,7 @@
         /* ================================
            Y2K-only elements (hidden by default)
            ================================ */
-        .marquee, .blob, .stickers, .eyebrow, .rainbow-bar {
+        .marquee, .blob, .stickers, .eyebrow, .rainbow-bar, .student-id-card {
             display: none;
         }
 
@@ -500,12 +501,246 @@
         .sticker:nth-child(2) { background: var(--y2k-yellow); color: var(--y2k-ink); transform: rotate(-4deg); align-self: flex-end; }
         .sticker:nth-child(3) { background: var(--y2k-blue); color: var(--y2k-paper); transform: rotate(3deg); }
 
+        /* Student ID card — the empty space filler */
+        .student-id-card {
+            position: absolute;
+            top: 20rem;
+            left: 70%;
+            width: 300px;
+            background: var(--y2k-idpink);
+            border: 3px solid var(--y2k-ink);
+            border-radius: 16px;
+            padding: 1.1rem 1.2rem 1rem;
+            box-shadow: 8px 8px 0 var(--y2k-ink);
+            transform: rotate(-7deg);
+            z-index: 3;
+            transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s ease;
+        }
+        .student-id-card:hover {
+            transform: rotate(0deg) translateY(-4px) scale(1.02);
+            box-shadow: 11px 11px 0 var(--y2k-ink);
+        }
+        .id-top {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 0.2rem;
+        }
+        .id-title-wrap {
+            text-align: right;
+            margin-bottom: 0.6rem;
+        }
+        .id-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--y2k-ink);
+            letter-spacing: 0.5px;
+        }
+        .id-swoosh {
+            width: 70px;
+            height: 26px;
+            display: block;
+            margin-left: auto;
+        }
+        .id-body {
+            display: flex;
+            gap: 0.9rem;
+        }
+        .id-photo {
+            width: 78px;
+            height: 92px;
+            border: 2px solid var(--y2k-ink);
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #fff;
+        }
+        .id-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .id-fields {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem 0.5rem;
+        }
+        .id-field .id-label {
+            display: block;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.5px;
+            color: #8a6b78;
+            text-transform: uppercase;
+        }
+        .id-field .id-value {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--y2k-ink);
+        }
+        .id-divider {
+            border: none;
+            border-top: 1.5px dashed var(--y2k-ink);
+            opacity: 0.5;
+            margin: 0.7rem 0 0.7rem;
+        }
+        .id-barcode {
+            margin-top: 0.7rem;
+            height: 26px;
+            border-radius: 2px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--y2k-ink) 0px, var(--y2k-ink) 2px,
+                transparent 2px, transparent 3px,
+                var(--y2k-ink) 3px, var(--y2k-ink) 4px,
+                transparent 4px, transparent 6px,
+                var(--y2k-ink) 6px, var(--y2k-ink) 9px,
+                transparent 9px, transparent 10px,
+                var(--y2k-ink) 10px, var(--y2k-ink) 11px,
+                transparent 11px, transparent 14px
+            );
+        }
+
         .rainbow-bar {
             height: 8px;
             width: 100%;
             background: linear-gradient(90deg, var(--y2k-pink), var(--y2k-orange), var(--y2k-yellow), var(--y2k-lime), var(--y2k-blue), var(--y2k-purple));
             border-radius: 100px;
             margin-bottom: 2.5rem;
+        }
+
+        /* mascot buddy — the surprise */
+        .mascot-wrap {
+            position: fixed;
+            bottom: 1.6rem;
+            right: 1.8rem;
+            z-index: 900;
+            display: none;
+            cursor: pointer;
+        }
+        body.y2k .mascot-wrap { display: block; }
+
+        .mascot {
+            width: 72px;
+            height: 72px;
+            animation: mascot-bob 2.2s ease-in-out infinite;
+            transform-origin: 50% 100%;
+            filter: drop-shadow(2px 4px 0 rgba(0,0,0,0.25));
+            transition: transform 0.2s ease;
+        }
+        .mascot-wrap:hover .mascot {
+            transform: scale(1.08) rotate(-4deg);
+        }
+        @keyframes mascot-bob {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        .mascot-bubble {
+            position: absolute;
+            bottom: 88px;
+            right: 0;
+            min-width: 170px;
+            max-width: 220px;
+            background: var(--y2k-paper);
+            border: 2.5px solid var(--y2k-ink);
+            border-radius: 14px;
+            padding: 0.7rem 0.9rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--y2k-ink);
+            box-shadow: 4px 4px 0 var(--y2k-ink);
+            opacity: 0;
+            transform: translateY(8px) scale(0.9);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s cubic-bezier(.34,1.56,.64,1);
+        }
+        .mascot-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            right: 26px;
+            width: 16px;
+            height: 16px;
+            background: var(--y2k-paper);
+            border-right: 2.5px solid var(--y2k-ink);
+            border-bottom: 2.5px solid var(--y2k-ink);
+            transform: rotate(45deg);
+        }
+        .mascot-bubble.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        @media (max-width: 768px) {
+            .mascot { width: 56px; height: 56px; }
+            .mascot-bubble { max-width: 170px; font-size: 0.65rem; bottom: 70px; }
+        }
+
+        /* ================================
+           extra kidcore decorations, y2k only
+           ================================ */
+        .kidcore-deco {
+            display: none;
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+            filter: drop-shadow(2px 3px 0 rgba(0,0,0,0.15));
+        }
+        body.y2k .kidcore-deco { display: block; }
+
+        .deco-daisy1 { top: 8rem; left: 3rem; width: 64px; height: 64px; animation: deco-spin 9s linear infinite; }
+        .deco-daisy2 { bottom: 9rem; left: 6%; width: 46px; height: 46px; animation: deco-spin 7s linear infinite reverse; }
+        .deco-star1  { top: 46%; left: 2.2rem; width: 40px; height: 40px; animation: deco-bob 3.2s ease-in-out infinite; }
+        .deco-star2  { top: 12rem; right: 2rem; width: 30px; height: 30px; animation: deco-bob 2.6s ease-in-out infinite 0.4s; }
+        .deco-smiley { bottom: 7.5rem; right: 7rem; width: 54px; height: 54px; animation: deco-wiggle 2.8s ease-in-out infinite; }
+        .deco-heart  { top: 34%; right: 1.5rem; width: 34px; height: 34px; animation: deco-bob 3.6s ease-in-out infinite 0.6s; }
+
+        @keyframes deco-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes deco-bob { 0%,100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-14px) rotate(6deg); } }
+        @keyframes deco-wiggle { 0%,100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.08); } }
+
+        @media (max-width: 1100px) {
+            .kidcore-deco { display: none !important; }
+        }
+
+        /* checkerboard divider strip */
+        .checker-strip {
+            display: none;
+            width: 100%;
+            height: 22px;
+            margin-bottom: 1.5rem;
+            border-radius: 6px;
+            background-image:
+                linear-gradient(45deg, var(--y2k-ink) 25%, transparent 25%, transparent 75%, var(--y2k-ink) 75%),
+                linear-gradient(45deg, var(--y2k-ink) 25%, var(--y2k-paper) 25%, var(--y2k-paper) 75%, var(--y2k-ink) 75%);
+            background-size: 22px 22px;
+            background-position: 0 0, 11px 11px;
+            border-top: 2.5px solid var(--y2k-ink);
+            border-bottom: 2.5px solid var(--y2k-ink);
+        }
+        body.y2k .checker-strip { display: block; }
+
+        /* candy stripe scrollbar, y2k only */
+        body.y2k {
+            scrollbar-width: auto;
+        }
+        body.y2k::-webkit-scrollbar { width: 14px; }
+        body.y2k::-webkit-scrollbar-track { background: var(--y2k-cream); }
+        body.y2k::-webkit-scrollbar-thumb {
+            background: repeating-linear-gradient(
+                135deg,
+                var(--y2k-pink) 0 8px,
+                var(--y2k-yellow) 8px 16px
+            );
+            border-radius: 20px;
+            border: 2px solid var(--y2k-ink);
         }
 
         .confetti-piece {
@@ -546,6 +781,7 @@
         body.y2k .rainbow-bar { display: block; }
         body.y2k .stickers { display: flex; }
         body.y2k .eyebrow { display: inline-flex; }
+        body.y2k .student-id-card { display: block; }
 
         body.y2k nav { top: 2.6rem; }
         body.y2k nav a {
@@ -743,10 +979,12 @@
             }
 
             .stickers { display: none !important; }
+            .student-id-card { display: none !important; }
         }
 
         @media (max-width: 1100px) {
             body.y2k .stickers { display: none !important; }
+            body.y2k .student-id-card { display: none !important; }
         }
     </style>
 </head>
@@ -756,16 +994,59 @@
     <div class="blob blob2"></div>
     <div class="blob blob3"></div>
 
+    <!-- kidcore decorations, y2k only -->
+    <svg class="kidcore-deco deco-daisy1" viewBox="0 0 64 64">
+        <g fill="#FFD93D" stroke="#191308" stroke-width="2.5">
+            <ellipse cx="32" cy="14" rx="10" ry="14"/>
+            <ellipse cx="32" cy="50" rx="10" ry="14"/>
+            <ellipse cx="14" cy="32" rx="14" ry="10"/>
+            <ellipse cx="50" cy="32" rx="14" ry="10"/>
+        </g>
+        <circle cx="32" cy="32" r="10" fill="#FF3E9A" stroke="#191308" stroke-width="2.5"/>
+    </svg>
+
+    <svg class="kidcore-deco deco-daisy2" viewBox="0 0 64 64">
+        <g fill="#2D9CFF" stroke="#191308" stroke-width="2.5">
+            <ellipse cx="32" cy="14" rx="10" ry="14"/>
+            <ellipse cx="32" cy="50" rx="10" ry="14"/>
+            <ellipse cx="14" cy="32" rx="14" ry="10"/>
+            <ellipse cx="50" cy="32" rx="14" ry="10"/>
+        </g>
+        <circle cx="32" cy="32" r="10" fill="#FFD93D" stroke="#191308" stroke-width="2.5"/>
+    </svg>
+
+    <svg class="kidcore-deco deco-star1" viewBox="0 0 40 40">
+        <path d="M20 1 L24.5 14.5 L38.5 14.5 L27 22.8 L31.3 36.3 L20 27.8 L8.7 36.3 L13 22.8 L1.5 14.5 L15.5 14.5 Z"
+              fill="#C8FF3D" stroke="#191308" stroke-width="2.2" stroke-linejoin="round"/>
+    </svg>
+
+    <svg class="kidcore-deco deco-star2" viewBox="0 0 40 40">
+        <path d="M20 1 L24.5 14.5 L38.5 14.5 L27 22.8 L31.3 36.3 L20 27.8 L8.7 36.3 L13 22.8 L1.5 14.5 L15.5 14.5 Z"
+              fill="#8A3FFC" stroke="#191308" stroke-width="2.2" stroke-linejoin="round"/>
+    </svg>
+
+    <svg class="kidcore-deco deco-heart" viewBox="0 0 40 40">
+        <path d="M20 36 C4 25 2 14 10 8 C15 4.5 20 7 20 13 C20 7 25 4.5 30 8 C38 14 36 25 20 36 Z"
+              fill="#FF3E9A" stroke="#191308" stroke-width="2.2" stroke-linejoin="round"/>
+    </svg>
+
+    <svg class="kidcore-deco deco-smiley" viewBox="0 0 54 54">
+        <circle cx="27" cy="27" r="24" fill="#FFD93D" stroke="#191308" stroke-width="2.5"/>
+        <circle cx="18" cy="24" r="3" fill="#191308"/>
+        <circle cx="36" cy="24" r="3" fill="#191308"/>
+        <path d="M15 33 Q27 44 39 33" stroke="#191308" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+
     <div class="marquee">
         <div class="marquee-track">
             <span>THENKS YEW TO LAGU DJ ANGKOT DANGDUT AND PHONK</span><span class="hl">★</span>
             <span>KOPKEN HARGA MATI</span><span class="hl">★</span>
             <span>AYAM PENYET CABE IJO</span><span class="hl">★</span>
-            <span>HIRE SAYA UTK UNLOCK POTENSI SAYA YG KEREN! #OPTIMIS</span><span class="hl">★</span>
+            <span>HIRE SAYA UTK UNLOCK POTENSI SAYA! #OPTIMIS</span><span class="hl">★</span>
             <span>THENKS YEW TO LAGU DJ ANGKOT DANGDUT AND PHONK</span><span class="hl">★</span>
             <span>KOPKEN HARGA MATI</span><span class="hl">★</span>
             <span>AYAM PENYET CABE IJO</span><span class="hl">★</span>
-            <span>HIRE SAYA UTK UNLOCK POTENSI SAYA #OPTIMIS</span><span class="hl">★</span>
+            <span>HIRE SAYA UTK UNLOCK POTENSI SAYA! #OPTIMIS</span><span class="hl">★</span>
         </div>
     </div>
 
@@ -811,6 +1092,42 @@
             </div>
         </div>
     </section>
+
+    <!-- Student ID card, filling the empty space beside the hero -->
+    <div class="student-id-card">
+        <div class="id-title-wrap">
+            <svg class="id-swoosh" viewBox="0 0 70 26" fill="none">
+                <path d="M3 20C15 22 30 6 50 4" stroke="#191308" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M55 2 L57 7 L62 8 L57 9 L55 14 L53 9 L48 8 L53 7 Z" fill="#191308"/>
+            </svg>
+            <span class="id-title">Student ID</span>
+        </div>
+        <div class="id-body">
+            <div class="id-photo">
+                <img src="muka.jpg" alt="Yuliana">
+            </div>
+            <div class="id-fields">
+                <div class="id-field">
+                    <span class="id-label">Name</span>
+                    <span class="id-value">JULE</span>
+                </div>
+                <div class="id-field">
+                    <span class="id-label">Birthday</span>
+                    <span class="id-value">03-07-2004</span>
+                </div>
+                <div class="id-field">
+                    <span class="id-label">School</span>
+                    <span class="id-value">IPB UNI</span>
+                </div>
+                <div class="id-field">
+                    <span class="id-label">Year Level</span>
+                    <span class="id-value">2022</span>
+                </div>
+            </div>
+        </div>
+        <hr class="id-divider">
+        <div class="id-barcode"></div>
+    </div>
 
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
@@ -889,6 +1206,7 @@
 
     <!-- Footer -->
     <footer>
+        <div class="checker-strip"></div>
         <div class="rainbow-bar"></div>
         <div class="footer-content">
             <div class="footer-section">
@@ -904,6 +1222,27 @@
             <p>© 2026 Yuliana.</p>
         </div>
     </footer>
+
+    <!-- surprise mascot buddy, y2k only -->
+    <div class="mascot-wrap" id="mascotWrap">
+        <div class="mascot-bubble" id="mascotBubble"></div>
+        <svg class="mascot" id="mascotSvg" viewBox="0 0 100 100">
+            <ellipse cx="50" cy="60" rx="30" ry="34" fill="#191308"/>
+            <ellipse cx="50" cy="66" rx="19" ry="24" fill="#FFFDF7"/>
+            <path d="M22 46 Q50 20 78 46 Q78 30 50 24 Q22 30 22 46 Z" fill="#191308"/>
+            <circle cx="40" cy="50" r="4.2" fill="#191308"/>
+            <circle cx="60" cy="50" r="4.2" fill="#191308"/>
+            <circle cx="41.3" cy="48.7" r="1.3" fill="#FFFDF7"/>
+            <circle cx="61.3" cy="48.7" r="1.3" fill="#FFFDF7"/>
+            <path d="M46 57 Q50 61 54 57" stroke="#FF8A3D" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="30" cy="58" rx="4.5" ry="3" fill="#FF3E9A" opacity="0.55"/>
+            <ellipse cx="70" cy="58" rx="4.5" ry="3" fill="#FF3E9A" opacity="0.55"/>
+            <path d="M14 62 Q4 58 8 46" stroke="#191308" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M86 62 Q96 58 92 46" stroke="#191308" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M36 92 L42 80 L50 92 Z" fill="#FF8A3D"/>
+            <path d="M64 92 L58 80 L50 92 Z" fill="#FF8A3D"/>
+        </svg>
+    </div>
 
 <script>
 (function(){
@@ -961,6 +1300,41 @@
                 ], { duration: 700 + Math.random()*400, easing:'cubic-bezier(.2,.7,.4,1)' });
                 (function(piece){ setTimeout(function(){ piece.remove(); }, 1200); })(p);
             }
+        });
+    }
+
+    // mascot buddy — click to hear its wisdom
+    var mascotWrap = document.getElementById('mascotWrap');
+    var mascotBubble = document.getElementById('mascotBubble');
+    var mascotSvg = document.getElementById('mascotSvg');
+    var mascotLines = [
+        "kita inikan dulu supaya bisa ini",
+        "love kopi lionk (pls sponsore me)",
+        "contact me @ email dibawah",
+        "otwekan segera",
+        "yg blm kicau kita kicaukan",
+        "kebal when yah",
+        "aku IPEbeH",
+        "tHANKKYEUUUWRRR for checking!"
+    ];
+    var bubbleTimer = null;
+    if (mascotWrap && mascotBubble) {
+        mascotWrap.addEventListener('click', function(){
+            var line = mascotLines[Math.floor(Math.random()*mascotLines.length)];
+            mascotBubble.textContent = line;
+            mascotBubble.classList.add('show');
+            if (!reduceMotion && mascotSvg) {
+                mascotSvg.animate([
+                    { transform: 'rotate(0deg) scale(1)' },
+                    { transform: 'rotate(-10deg) scale(1.05)' },
+                    { transform: 'rotate(8deg) scale(1.05)' },
+                    { transform: 'rotate(0deg) scale(1)' }
+                ], { duration: 380, easing: 'ease-out' });
+            }
+            clearTimeout(bubbleTimer);
+            bubbleTimer = setTimeout(function(){
+                mascotBubble.classList.remove('show');
+            }, 2600);
         });
     }
 })();
