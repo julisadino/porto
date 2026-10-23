@@ -283,26 +283,27 @@
             </div>
         </div>
         
-        <span class="status-badge">🚧 Still Developing</span>
+        <span class="status-badge">Completed</span>
     </header>
 
     <!-- Project Content -->
     <main class="project-content">
-        <!-- Overview -->
+        <!-- How it Made? -->
         <section class="content-section">
-            <h2>Some overview about it?</h2>
+            <h2>How it Made?</h2>
             <p>
-                This is my final project where I'm developing a fuzzy logic control system to regulate 
-                CO₂ levels in controlled environments. The idea came from the challenge of maintaining 
-                optimal growing conditions in agricultural settings, where traditional on-off control 
-                systems often cause fluctuations that can stress plants.
+                It all started with a simple question: why does nobody control CO₂ in mini plant factories? 
+                Plants rely on CO₂ for photosynthesis, yet inside a closed growing chamber it is often left 
+                to chance. When I measured it myself, the chamber averaged only 368 ppm, well below what 
+                plants need to grow at their best. So for my undergraduate thesis, I decided to build a 
+                system that could fix that automatically.
             </p>
             <p>
-                I chose fuzzy logic because it mimics human decision-making better than conventional 
-                controllers. Instead of just "turn on" or "turn off," the system can make gradual 
-                adjustments like "slightly increase ventilation" or "moderately reduce CO₂ injection." 
-                This approach helps maintain more stable environmental conditions while reducing energy 
-                waste from constant switching.
+                The brain of the system is a Sugeno Fuzzy Logic Controller running in a closed loop. 
+                Instead of a blunt "on or off" decision, it weighs how far the CO₂ level is from the 
+                target and how fast it is changing, then decides how long the solenoid valve should inject 
+                CO₂. An NDIR SH-VT260 sensor reads the chamber, an ESP32 does the thinking, and the 
+                setpoint can be adjusted anywhere between 500 and 1500 ppm.
             </p>
         </section>
 
@@ -315,35 +316,61 @@
         <section class="content-section">
             <h2>Technologies Used</h2>
             <div class="tech-stack">
+                <span class="tech-tag">ESP32</span>
+                <span class="tech-tag">Sugeno Fuzzy Logic</span>
+                <span class="tech-tag">NDIR SH-VT260 Sensor</span>
+                <span class="tech-tag">Solenoid Valve</span>
+                <span class="tech-tag">Laravel</span>
                 <span class="tech-tag">Python</span>
-                <span class="tech-tag">scikit-fuzzy</span>
                 <span class="tech-tag">NumPy</span>
                 <span class="tech-tag">Matplotlib</span>
-                <span class="tech-tag">Arduino</span>
-                <span class="tech-tag">CO₂ Sensors</span>
             </div>
         </section>
+
+        <!-- Calibration -->
+        <section class="content-section">
+            <h2>Making the Numbers Trustworthy</h2>
             <p>
-                The system reads CO₂ levels from sensors and uses fuzzy logic rules to determine the 
-                appropriate response. For example, if CO₂ is "slightly high" and rising slowly, it might 
-                open ventilation a little bit. But if CO₂ is "very high" and rising fast, it would open 
-                ventilation fully and stop CO₂ injection immediately.
-            </p>
-            <p>
-                I'm currently working on fine-tuning the fuzzy rules and testing different membership 
-                functions to see which configurations give the smoothest control. The goal is to maintain 
-                CO₂ levels within a tight range without causing the rapid on-off cycling that happens with 
-                simpler control methods.
+                A controller is only as good as its measurements, so before trusting anything I calibrated 
+                every part of the loop. The injection rate turned out to be beautifully linear at 
+                6.20 ppm per second (R² = 0.9987), and the sensor calibration reached an R² of 0.9846. 
+                With that foundation, I could predict how the chamber would respond to each valve pulse.
             </p>
         </section>
+
+        <!-- Results -->
+        <section class="content-section">
+            <h2>Does It Actually Work?</h2>
             <p>
-                So far, I've completed the initial design of the fuzzy logic controller and tested it 
-                in simulation. The preliminary results look promising, showing better stability compared 
-                to traditional PID control. I'm now working on the hardware integration and planning field 
-                tests to validate the system under real conditions.
+                I tested the system at setpoints of 600, 800, and 1000 ppm, and it held each one steadily. 
+                The chamber reached the target in 9, 24, and 30 minutes respectively, with a maximum overshoot of only ±18, ±19, and ±25 ppm. 
+                The RMSE stayed low at 18.7, 21.5, and 29.6 ppm, with standard deviations of 16.9, 19.7, 
+                and 23.9 ppm. In short, the CO₂ stayed right where I asked it to be.
+            </p>
+        </section>
+
+        <!-- Dashboard -->
+        <section class="content-section">
+            <h2>Watching It Live</h2>
+            <p>
+                I also built a Laravel-based web dashboard that shows the data in real time and works across multiple devices. 
+                Anyone can open it (I build both in AppScript as well so everyone can access it too publicly) and
+                see what's happening inside the chamber, and know the controller is doing its job.
+            </p>
+        </section>
+
+        <!-- Thesis Info -->
+        <section class="content-section">
+            <h2>About the Thesis</h2>
+            <p>
+                <em>Development of a Fuzzy Logic Based Carbon Dioxide Monitoring and Control System in a 
+                Controlled Environment</em>, supervised by Mohamad Solahudin and Lilis Sucahyo.
             </p>
             <p>
-                This project is still in development as part of my final undergraduate work. 
+                If you're interested in reading more about my thesis project, please do contact me 
+                through email at 
+                <a href="mailto:yulianasikoembang@gmail.com" style="color: var(--accent);">yulianasikoembang@gmail.com</a>. 
+                I'd be happy to share the full details and talk about it.
             </p>
         </section>
     </main>
