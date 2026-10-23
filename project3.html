@@ -326,20 +326,21 @@
                 <span class="tech-tag">Matplotlib</span>
             </div>
         </section>
+
+        <!-- Calibration, Results & Dashboard -->
+        <section class="content-section">
             <p>
                 A controller is only as good as its measurements, so before trusting anything I calibrated 
                 every part of the loop. The injection rate turned out to be beautifully linear at 
                 6.20 ppm per second (R² = 0.9987), and the sensor calibration reached an R² of 0.9846. 
                 With that foundation, I could predict how the chamber would respond to each valve pulse.
             </p>
-        </section>
             <p>
                 I tested the system at setpoints of 600, 800, and 1000 ppm, and it held each one steadily. 
                 The chamber reached the target in 9, 24, and 30 minutes respectively, with a maximum overshoot of only ±18, ±19, and ±25 ppm. 
                 The RMSE stayed low at 18.7, 21.5, and 29.6 ppm, with standard deviations of 16.9, 19.7, 
                 and 23.9 ppm. In short, the CO₂ stayed right where I asked it to be.
             </p>
-        </section>
             <p>
                 I also built a Laravel-based web dashboard that shows the data in real time and works across multiple devices. 
                 Anyone can open it (I build both in AppScript as well so everyone can access it too publicly) and
