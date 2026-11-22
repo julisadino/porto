@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis with Excel & Power BI - Yuliana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #7c8a92;
+            --accent-hover: #9fb0ba;
+            --card-bg: #151515;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 3rem;
+            left: 4rem;
+            z-index: 1000;
+        }
+
+        .back-button a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Project Header */
+        .project-header {
+            padding: 8rem 6rem 4rem 6rem;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-category {
+            font-family: 'Inter', sans-serif;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 0 6rem 6rem 6rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .content-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Image Container (no fixed height, no crop, no stretch) */
+        .project-image {
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            font-family: 'Inter', sans-serif;
+            padding: 0.5rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Buttons */
+        .btn-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.8rem;
+            border: 1px solid var(--accent);
+            border-radius: 30px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .btn.secondary {
+            border-color: rgba(255, 255, 255, 0.15);
+            color: var(--text-secondary);
+        }
+
+        .btn.secondary:hover {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border-color: var(--accent-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .back-button {
+                left: 2rem;
+                top: 2rem;
+            }
+
+            .project-header {
+                padding: 6rem 2rem 3rem 2rem;
+            }
+
+            .project-content {
+                padding: 0 2rem 4rem 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .project-meta {
+                gap: 2rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <div class="back-button">
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Project Header -->
+    <header class="project-header">
+        <div class="project-category">Data Analytics • Banking</div>
+        <h1>Analysis with Excel &amp; Power BI</h1>
+
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Year</span>
+                <span class="meta-value">2026</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Platform</span>
+                <span class="meta-value">Excel &amp; Power BI</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Type</span>
+                <span class="meta-value">Self-initiated Project (Synthetic Data)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Content -->
+    <main class="project-content">
+        <!-- Overview -->
+        <section class="content-section">
+            <h2>How it Made?</h2>
+            <p>
+                As a self-initiated project to build my Data Analyst portfolio for the banking industry, I developed
+                an end-to-end transaction analysis using a synthetic dataset. No real bank data was used. The dataset
+                contains 5,000 transaction records, 1,200 customers, and 25 branches, intentionally filled with messy
+                data such as duplicates, blank cells, inconsistent text, mixed date formats, and invalid amounts to
+                simulate raw data from a real banking system.
+            </p>
+            <p>
+                Cleaned and validated the raw data in Excel using TRIM, CLEAN, IFS, and XLOOKUP, then built the KPIs
+                with COUNTIFS and SUMIFS and summarized the results with PivotTables and PivotCharts. After the cleaning
+                process, 4,843 valid transactions remained. The cleaned data was then loaded into Power BI and modeled as
+                a star schema, with Customers and Branches connected to Transactions plus a date table. Using DAX
+                measures, I built a three-page dashboard covering overview, customers, and branches. The totals from
+                Excel and Power BI were reconciled and matched.
+            </p>
+        </section>
+
+        <!-- Dashboard Image 1: Overview -->
+        <div class="project-image">
+            <img src="images/analysis-overview.png" alt="Power BI dashboard page 1: Overview Data" loading="lazy">
+        </div>
+
+        <!-- Technologies Used -->
+        <section class="content-section">
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Microsoft Excel</span>
+                <span class="tech-tag">PivotTable</span>
+                <span class="tech-tag">XLOOKUP</span>
+                <span class="tech-tag">SUMIFS / COUNTIFS</span>
+                <span class="tech-tag">Power BI</span>
+                <span class="tech-tag">DAX</span>
+                <span class="tech-tag">Data Modeling</span>
+                <span class="tech-tag">Python (Dataset Generator)</span>
+                <span class="tech-tag">GitHub</span>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="content-section">
+            <p>
+                The dashboard shows 4,843 valid transactions with a 94.86% success rate and a total successful
+                transaction value of Rp 11.15 billion across 958 active customers. Mobile Banking is the most used
+                channel with 33.1% of all transactions, while Teller carries the highest value at 35.4%, with an average
+                of Rp 5.49 million per transaction compared to Rp 1.80 million on mobile. The share of Mobile Banking
+                also grew from 25.0% in the first quarter to 40.2% in the last quarter.
+            </p>
+
+            <div class="project-image">
+                <img src="images/analysis-customers.png" alt="Power BI dashboard page 2: Customers Analysis" loading="lazy">
+            </div>
+
+            <p>
+                The customer analysis found that Mass customers make 54.7% of all transactions but only 24.8% of the
+                value, while Business customers make 9.7% of transactions but contribute the largest share of value at
+                26.9%. The top 10% of active customers account for 56.7% of the total value, and all of the top 10
+                customers come from the Business and Priority segments. This shows that the value is concentrated in a
+                small group of customers.
+            </p>
+
+            <div class="project-image">
+                <img src="images/analysis-branches.png" alt="Power BI dashboard page 3: Branches Analysis" loading="lazy">
+            </div>
+
+            <p>
+                For the branches, Jakarta contributes 37.2% of the total value. The Kelapa Gading, Kebayoran, and
+                Sudirman branches lead with similar totals of around Rp 0.92 to 0.94 billion, and Medan Merdeka is the
+                strongest branch outside Jakarta. The overall failure rate is 3.2%, with a spike in Mobile Banking
+                failures in July (9.4%) that is worth investigating further.
+            </p>
+            <p>
+                Because the dataset is synthetic, these patterns do not represent a real bank, and the possible
+                explanations behind them are hypotheses that still need to be tested. The main goal of this project is
+                to practice a complete analyst workflow: cleaning raw data, defining KPIs, building a data model, and
+                communicating insights through a dashboard.
+            </p>
+        </section>
+
+        <!-- Files -->
+        <section class="content-section">
+            <h2>Project Files</h2>
+            <p>
+                The Excel workbook contains the cleaning process, KPI summary, and PivotTables used in this analysis.
+            </p>
+            <div class="btn-row">
+                <a class="btn" href="PASTE_GOOGLE_DRIVE_LINK_HERE" target="_blank" rel="noopener">View Excel File on Google Drive ↗</a>
+                <a class="btn secondary" href="PASTE_GITHUB_REPO_LINK_HERE" target="_blank" rel="noopener">View on GitHub ↗</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
